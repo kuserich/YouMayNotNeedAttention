@@ -17,10 +17,10 @@ fi
 mkdir -p ${TOOLS_DIR}
 
 # install sockeye for sockeye-autopilot
-pip install sockeye --no-deps
+pip install sockeye
 
 # install sacreBLEU for evaluation
-pip install sacrebleu
+#pip install sacrebleu
 
 # install Moses scripts for preprocessing
 git clone https://github.com/bricksdont/moses-scripts ${TOOLS_DIR}/moses-scripts
