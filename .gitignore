@@ -1,3 +1,5 @@
 *.bpe*
 */data/*
 *.pyc
+
+venvs
