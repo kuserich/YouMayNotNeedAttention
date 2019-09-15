@@ -15,6 +15,8 @@ import random
 from mosestokenizer import *
 import sacrebleu
 
+import codecs
+
 parser = argparse.ArgumentParser(description='Translate with a trained model. Optionally, this script can also calculate BLEU.')
 parser.add_argument('--data', type=str, default=' ~/corpus/WMTENDE/5pad/',
                     help='location of the data corpus')
@@ -55,6 +57,28 @@ parser.add_argument('--id', help='optional. useful when running this script mult
 args = parser.parse_args()
 
 print('Args: {}'.format(args), file=stderr)
+
+# REMOVE START
+
+
+
+
+
+if args.eval:
+    inputfh = open(save_path, 'r')
+    system = inputfh.readlines()
+
+    inputref = codecs.open(args.target_translation, 'r')
+    ref = inputref.readlines()
+
+    #print(str(args.id) + "  "+ str(sacrebleu.corpus_bleu(system, [ref]).score) + " " + save_path)
+
+print("Looks like everything is working")
+exit()
+
+
+
+# REMOVE END
 
 if(args.eval and args.debug):
     print ("Cant eval and debug in same run. Please disable at least one of these options.")
@@ -317,7 +341,7 @@ if args.eval:
     inputfh = open(save_path, 'r')
     system = inputfh.readlines()
 
-    inputref = open(args.target_translation, 'r')
+    inputref = codecs.open(args.target_translation, 'r')
     ref = inputref.readlines()
 
     print(str(args.id) + "  "+ str(sacrebleu.corpus_bleu(system, [ref]).score) + " " + save_path)
