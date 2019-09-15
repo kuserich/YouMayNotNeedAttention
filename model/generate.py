@@ -15,7 +15,7 @@ import random
 from mosestokenizer import *
 import sacrebleu
 
-import codecs
+import gzip
 
 parser = argparse.ArgumentParser(description='Translate with a trained model. Optionally, this script can also calculate BLEU.')
 parser.add_argument('--data', type=str, default=' ~/corpus/WMTENDE/5pad/',
@@ -64,8 +64,9 @@ print('Args: {}'.format(args), file=stderr)
 
 
 if args.eval:
-    inputref = codecs.open(args.target_translation, 'r')
-    ref = inputref.readlines()
+    inputref = open(args.target_translation, 'r')
+    gzip_ref = gzip.GzipFile(fileobj=inputref)
+    ref = gzip_ref.readlines()
 
     #print(str(args.id) + "  "+ str(sacrebleu.corpus_bleu(system, [ref]).score) + " " + save_path)
 
@@ -337,7 +338,7 @@ if args.eval:
     inputfh = open(save_path, 'r')
     system = inputfh.readlines()
 
-    inputref = codecs.open(args.target_translation, 'r')
+    inputref = open(args.target_translation, 'r')
     ref = inputref.readlines()
 
     print(str(args.id) + "  "+ str(sacrebleu.corpus_bleu(system, [ref]).score) + " " + save_path)
