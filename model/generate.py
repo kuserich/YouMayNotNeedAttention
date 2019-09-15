@@ -58,24 +58,6 @@ args = parser.parse_args()
 
 print('Args: {}'.format(args), file=stderr)
 
-# REMOVE START
-
-
-
-
-if args.eval:
-    inputref = open(args.target_translation, 'r')
-    gzip_ref = gzip.GzipFile(fileobj=inputref)
-    ref = gzip_ref.readlines()
-
-    #print(str(args.id) + "  "+ str(sacrebleu.corpus_bleu(system, [ref]).score) + " " + save_path)
-
-print("Looks like everything is working")
-exit()
-
-
-
-# REMOVE END
 
 if(args.eval and args.debug):
     print ("Cant eval and debug in same run. Please disable at least one of these options.")
