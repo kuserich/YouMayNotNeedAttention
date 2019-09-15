@@ -63,6 +63,7 @@ print('Args: {}'.format(args), file=stderr)
 
 
 
+save_path = os.path.join(args.save_dir,  save_file_name)
 
 if args.eval:
     inputfh = open(save_path, 'r')
