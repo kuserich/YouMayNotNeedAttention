@@ -63,14 +63,7 @@ print('Args: {}'.format(args), file=stderr)
 
 
 
-s='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-save_file_name = ''.join(random.sample(s,10))
-save_path = os.path.join(args.save_dir,  save_file_name)
-
 if args.eval:
-    inputfh = open(save_path, 'r')
-    system = inputfh.readlines()
-
     inputref = codecs.open(args.target_translation, 'r')
     ref = inputref.readlines()
 
