@@ -3,18 +3,26 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-CHECKPOINT="model357500.pt"
+MODEL="exps/model390000.pt"
 DATA="corpus/WMTENDE/4pad"
+SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/test.0.src"
+BEAM_SIZE=5
+TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
+EPSILON_LIMIT=3
+SRC_EPSILON_INJECTION=4
+START_PADS=5
+LANGUAGE="de"
+SAVE_DIR="output/"
 
 python model/generate.py \
-    --checkpoint exps/model390000.pt \
-    --data corpus/WMTENDE/4pad \
-    --src_path sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src \
-    --beam_size 5 \
+    --checkpoint ${MODEL} \
+    --data ${DATA} \
+    --src_path ${SRC_PATH} \
+    --beam_size ${BEAM_SIZE} \
     --eval \
-    --target_translation sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg \
-    --epsilon_limit 3 \
-    --src_epsilon_injection 4 \
-    --start_pads 5 \
-    --language de \
-    --save_dir output/
+    --target_translation ${TARGET_TRANSLATION} \
+    --epsilon_limit ${EPSILON_LIMIT} \
+    --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
+    --start_pads ${START_PADS} \
+    --language ${LANGUAGE} \
+    --save_dir ${SAVE_DIR}
