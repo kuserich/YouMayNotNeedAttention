@@ -81,9 +81,9 @@ directory = args.directory
 num_valid = args.num_valid
 
 src_out_val = open(directory + "valid_src.txt", 'w')
-src_out_train =  open(directory + "train_src.txt", 'w')
-trg_out_val =  open(directory + "valid_trg.txt", 'w')
-trg_out_train =  open(directory + "train_trg.txt", 'w')
+src_out_train = open(directory + "train_src.txt", 'w')
+trg_out_val = open(directory + "valid_trg.txt", 'w')
+trg_out_train = open(directory + "train_trg.txt", 'w')
 
 
 def read_single_line(input_line):
@@ -120,21 +120,9 @@ for a in range(len(parsedLines)):
     elif lenT + cost > lenS:
         src_split.extend([TRG_EPSILON] * (lenT + cost - lenS))
 
-    if a<num_valid:
+    if a < num_valid:
         src_out_val.write(" ".join(src_split) + '\n')
         trg_out_val.write(" ".join(trg_split) + '\n')
     else:
         src_out_train.write(" ".join(src_split) + '\n')
         trg_out_train.write(" ".join(trg_split) + '\n')
-
-
-
-
-
-
-
-
-
-
-
-
