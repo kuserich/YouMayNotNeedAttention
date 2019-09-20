@@ -19,12 +19,10 @@ mkdir -p ${TOOLS_DIR}
 # install sockeye for sockeye-autopilot
 pip install sockeye
 
-# install sacreBLEU for evaluation
-#pip install sacrebleu
-
 # install Moses scripts for preprocessing
-git clone https://github.com/bricksdont/moses-scripts ${TOOLS_DIR}/moses-scripts
+pip install mosestokenizer
 
+# install fast_align
 git clone https://github.com/clab/fast_align.git ${TOOLS_DIR}/fast_align
 cd ${TOOLS_DIR}/fast_align
 cmake .
