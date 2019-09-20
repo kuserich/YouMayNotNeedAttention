@@ -11,7 +11,8 @@ sed -i '/^ |||/d' combined_srctrg_clean
 sed -i '/ ||| $/d' combined_srctrg_clean
 ```
 
-Code for the **Eager Translation Model** from the paper [You May Not Need Attention](https://arxiv.org/abs/1810.13409) by Ofir Press and Noah A. Smith. 
+Code for the **Eager Translation Model** from the paper [You May Not Need Attention](https://arxiv.org/abs/1810.13409) by Ofir Press and Noah A. Smith
+with some adjustments by Markus Göckeritz. Adjustments do not include any changes to the functionality or behavior of the code by the original authors.
 
 ![Eager Translation Model](http://ofir.io/images/eagertranslation/eagertranslationmodel.png)
 
@@ -27,6 +28,7 @@ This code requires Python 3.6+
 ## Preprocessing 
 ### Get the translation data
 1. Download the dataset you'd like to use. For this example we'll use [Sockeye Autopilot](https://github.com/awslabs/sockeye/tree/master/sockeye_contrib/autopilot) to download the WMT 2014 EN->DE dataset.
+
 ```
 sockeye-autopilot --task wmt14_en_de --model none
 ```
