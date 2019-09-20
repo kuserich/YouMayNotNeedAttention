@@ -27,6 +27,17 @@ This code requires Python 3.6+
 
 ## Preprocessing 
 ### Get the translation data
+0. Setup & activate a virtual environment
+```
+bash scripts/make_virtualenv.sh
+source venvs/YouMayNotNeedAttention/bin/activate
+```
+
+1. Install all dependencies
+```
+bash scripts/download_install_packages.sh
+```
+
 1. Download the dataset you'd like to use. For this example we'll use [Sockeye Autopilot](https://github.com/awslabs/sockeye/tree/master/sockeye_contrib/autopilot) to download the WMT 2014 EN->DE dataset.
 
 ```
