@@ -15,7 +15,7 @@ source ${SCRIPTS_DIR}/config.sh
 
 # Use fast_align to find the aligments of the training sentence pairs
 alias fast_align=${TOOLS_DIR}/fast_align/fast_align
-which fast_align
+echo which fast_align
 #fast_align -i ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg_clean -d -o -v > forward.align_ende
 
 # Run our script for making the training data Eager Feasible:
