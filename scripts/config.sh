@@ -9,4 +9,4 @@ MODELS_DIR=${BASE_DIR}/exps
 
 LANGUAGE_DATA="wmt14_en_de"
 
-PYTHON_VERSION="python3.6"
+PYTHON_VERSION="python3.7"
