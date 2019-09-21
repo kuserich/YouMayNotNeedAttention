@@ -13,9 +13,9 @@ paste -d ' ||| ' \
 
 # There are sentence pairs where either side is empty
 # This will lead to fast align not being able to work propery, hence, remove these lines:
-cp combined_srctrg combined_srctrg_clean
-sed -i '/^ |||/d' combined_srctrg_clean
-sed -i '/ ||| $/d' combined_srctrg_clean
+cp ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg_clean
+sed -i '/^ |||/d' ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg_clean
+sed -i '/ ||| $/d' ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg_clean
 
 # Use fast_align to find the aligments of the training sentence pairs
 export OMP_NUM_THREADS=12
