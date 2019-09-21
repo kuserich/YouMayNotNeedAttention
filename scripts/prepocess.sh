@@ -18,6 +18,7 @@ sed -i '/^ |||/d' combined_srctrg_clean
 sed -i '/ ||| $/d' combined_srctrg_clean
 
 # Use fast_align to find the aligments of the training sentence pairs
+export OMP_NUM_THREADS=12
 alias fast_align=${TOOLS_DIR}/fast_align/fast_align
 fast_align -i ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg_clean -d -o -v > forward.align_ende
 
