@@ -24,4 +24,8 @@ ${TOOLS_DIR}/fast_align/fast_align -i ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/
 # Run our script for making the training data Eager Feasible:
 # Because add_epsilon performs in-place operations, we first create a copy
 cp forward.align_ende forward.align_ende.bkp
-python add_epsilons.py --align forward.align_ende --trg ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/
+python add_epsilons.py --align forward.align_ende \
+    --trg ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/train.shuf.trg \
+    --src ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/train.shuf.src \
+    --left_pad 4 \
+    --directory corpus/WMTENDE/4pad/
