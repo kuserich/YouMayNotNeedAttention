@@ -22,6 +22,7 @@ export OMP_NUM_THREADS=12
 ${TOOLS_DIR}/fast_align/fast_align -i ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg_clean -d -o -v > forward.align_ende
 
 # Run our script for making the training data Eager Feasible:
+mkdir -p corpus/WMTENDE/4pad/
 # Because add_epsilon performs in-place operations, we first create a copy
 cp forward.align_ende forward.align_ende.bkp
 python add_epsilons.py --align forward.align_ende \
