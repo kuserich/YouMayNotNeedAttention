@@ -16,7 +16,8 @@ distance = 0
 with open(alignments_file) as file:
     for line in file:
         for pair in line.split():
-            i, j = split_fast_align_pair(line)
-            distance += abs(int(i, 10) - int(j, 10))
-            print(line, distance)
-            exit()
+            #i, j = split_fast_align_pair(line)
+            #distance += abs(int(i, 10) - int(j, 10))
+            #print(line, distance)
+            print(pair)
+        exit()
