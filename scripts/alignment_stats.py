@@ -6,6 +6,11 @@ if len(sys.argv) < 2:
     print("Error: Please add the path to the alignment file as an argument.")
     exit()
 
+
+def split_fast_align_pair(aStr):
+    parts = aStr.split('-')
+    return (parts[0], parts[1])
+
 alignments_file = sys.argv[1]
 distance = 0
 with open(alignments_file) as file:
@@ -15,8 +20,3 @@ with open(alignments_file) as file:
             distance += abs(i - j)
             print(line, distance)
             exit()
-
-
-def split_fast_align_pair(aStr):
-    parts = aStr.split('-')
-    return (parts[0], parts[1])
