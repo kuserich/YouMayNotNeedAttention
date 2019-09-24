@@ -9,7 +9,7 @@ if len(sys.argv) < 2:
 
 def split_fast_align_pair(aStr):
     parts = aStr.split('-')
-    return (parts[0], parts[1])
+    return (int(parts[0], 10), int(parts[1], 10))
 
 alignments_file = sys.argv[1]
 distance = 0
