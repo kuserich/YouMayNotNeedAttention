@@ -1,5 +1,7 @@
 import sys
 
+print(sys.argv)
+
 if len(sys.argv) < 2:
     print("Error: Please add the path to the alignment file as an argument.")
     exit()
