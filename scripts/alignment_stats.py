@@ -128,20 +128,15 @@ def count_epsilon_tokens_in_file(file):
 
 
 def run(align, src, trg, output):
-    pair_distances, line_distances,
-    total_distance, total_num_words = compute_stats_from_file(align)
+    pair_distances, line_distances, total_distance, total_num_words = compute_stats_from_file(align)
     average_pair_distance = reduce(sum, pair_distances) / len(pair_distances)
     average_line_distance = reduce(sum, line_distances) / len(line_distances)
 
-    total_tokens_src, total_epsilon_tokens_src,
-    total_padding_tokens_src, line_tokens_src,
-    consecutive_epsilon_tokens_src = count_epsilon_tokens_in_file(src)
+    total_tokens_src, total_epsilon_tokens_src, total_padding_tokens_src, line_tokens_src, consecutive_epsilon_tokens_src = count_epsilon_tokens_in_file(src)
 
     average_tokens_per_line = reduce(sum, line_tokens_src) / len(line_tokens_src)
 
-    total_tokens_trg, total_epsilon_tokens_trg,
-    total_padding_tokens_trg, line_tokens_trg,
-    consecutive_epsilon_tokens_trg = count_epsilon_tokens_in_file(trg)
+    total_tokens_trg, total_epsilon_tokens_trg, total_padding_tokens_trg, line_tokens_trg, consecutive_epsilon_tokens_trg = count_epsilon_tokens_in_file(trg)
 
     message = (
         "ALIGNMENT STATISTICS",
