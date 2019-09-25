@@ -128,9 +128,20 @@ def count_epsilon_tokens_in_file(file):
 
 
 def run(align, src, trg, output):
-    pair_distances, line_distances, total_distance, total_num_words = compute_stats_from_file(align)
+    pair_distances, line_distances,
+    total_distance, total_num_words = compute_stats_from_file(align)
     average_pair_distance = reduce(sum, pair_distances) / len(pair_distances)
     average_line_distance = reduce(sum, line_distances) / len(line_distances)
+
+    total_tokens_src, total_epsilon_tokens_src,
+    total_padding_tokens_src, line_tokens_src,
+    consecutive_epsilon_tokens_src = count_epsilon_tokens_in_file(src)
+
+    average_tokens_per_line = reduce(sum, line_tokens_src) / len(line_tokens_src)
+
+    total_tokens_trg, total_epsilon_tokens_trg,
+    total_padding_tokens_trg, line_tokens_trg,
+    consecutive_epsilon_tokens_trg = count_epsilon_tokens_in_file(trg)
 
     message = (
         "ALIGNMENT STATISTICS",
@@ -139,7 +150,19 @@ def run(align, src, trg, output):
         "Number of Words: %d" % total_num_words,
         "Total Distance: %d" % total_distance,
         "Average Pair Distance: %d" % average_pair_distance,
-        "Average Line Distance: %d" % average_line_distance
+        "Average Line Distance: %d" % average_line_distance,
+        "",
+        "EPSILON STATISTICS (SRC)",
+        "=========================",
+        "Number of Tokens: %d" % total_tokens_src,
+        "Number of Epsilon Tokens: %d" % total_epsilon_tokens_src,
+        "Number of Padding Tokens: %d" % total_padding_tokens_src,
+        "",
+        "EPSILON STATISTICS (TRG)",
+        "=========================",
+        "Number of Tokens: %d" % total_tokens_trg,
+        "Number of Epsilon Tokens: %d" % total_epsilon_tokens_trg,
+        "Number of Padding Tokens: %d" % total_padding_tokens_trg,
     )
 
     print("")
