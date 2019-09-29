@@ -2,6 +2,7 @@
 */data/*
 *.pyc
 
+.idea/
 venvs
 tools
 .vscode/
