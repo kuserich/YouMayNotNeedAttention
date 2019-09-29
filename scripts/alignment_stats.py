@@ -56,16 +56,22 @@ def compute_stats_from_file(alignments_file):
     line_distances = []
     total_distance = 0
     total_num_words = 0
+    total_distance_eps_required = 0
     with open(alignments_file) as file:
         for line in file:
             line_distance = 0
             words = line.split()
             for pair in words:
                 i, j = split_fast_align_pair(pair)
-                distance = abs(i - j)
-                line_distance += distance
-                total_distance += distance
-                pair_distances.append(distance)
+                distance = i - j
+                distance_abs = abs(distance)
+                line_distance += distance_abs
+                total_distance += distance_abs
+                pair_distances.append(distance_abs)
+
+                if distance > 0:
+                    total_distance_eps_required += distance
+
             line_distances.append(line_distance)
             total_num_words += len(words)
 
