@@ -20,6 +20,7 @@ SAVE_DIR="output/"
 
 for START_PAD in "${START_PADS[@]}"
 do
+    mkdir -p ${SAVE_DIR}${START_PAD}
     python model/generate.py \
           --checkpoint ${MODEL} \
           --data ${DATA} \
@@ -31,6 +32,6 @@ do
           --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
           --start_pads ${START_PADS} \
           --language ${LANGUAGE} \
-          --save_dir ${SAVE_DIR}${START_PAD}_
+          --save_dir ${SAVE_DIR}${START_PAD}
     echo "Generated output for START_PADS=${START_PAD}"
 done
