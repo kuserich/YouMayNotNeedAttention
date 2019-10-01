@@ -28,7 +28,7 @@ do
           --target_translation ${TARGET_TRANSLATION} \
           --epsilon_limit ${EPSILON_LIMIT} \
           --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
-          --start_pads ${START_PADS} \
+          --start_pads ${START_PAD} \
           --language ${LANGUAGE} \
           --save_dir ${SAVE_DIR}${START_PAD}
     echo "Generated output for START_PADS=${START_PAD}"

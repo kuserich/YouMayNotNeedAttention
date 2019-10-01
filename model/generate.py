@@ -24,6 +24,9 @@ parser.add_argument('--data', type=str, default=' ~/corpus/WMTENDE/5pad/',
 parser.add_argument('--save_dir', type=str, default='./output/',
                     help='Folder in which to save the generated translation (file name will be generated automatically)')
 
+parser.add_argument('--file_name', type=str, default='',
+                    help='Optional file name')
+
 parser.add_argument('--src_path', type=str, default='./data/valid_src.txt',
                     help='location of the file to translate')
 parser.add_argument('--checkpoint', type=str, default='./model.pt',
@@ -300,6 +303,9 @@ if args.debug:
 
 s='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 save_file_name = ''.join(random.sample(s,10))
+
+if args.file_name:
+    save_file_name = args.file_name
 
 save_path = os.path.join(args.save_dir,  save_file_name)
 with open(save_path, 'w') as thefile:

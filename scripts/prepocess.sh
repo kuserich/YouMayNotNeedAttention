@@ -3,6 +3,8 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
+LEFT_PAD=4
+
 # Combine the source and target training data into one file
 paste -d ' ||| ' \
     ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/train.shuf.src \
@@ -22,11 +24,12 @@ export OMP_NUM_THREADS=12
 ${TOOLS_DIR}/fast_align/fast_align -i ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/combined_srctrg_clean -d -o -v > forward.align_ende
 
 # Run our script for making the training data Eager Feasible:
-mkdir -p corpus/WMTENDE/4pad/
+mkdir -p corpus/WMTENDE/${LEFT_PAD}pad/
+
 # Because add_epsilon performs in-place operations, we first create a copy
 cp forward.align_ende forward.align_ende.bkp
 python add_epsilons.py --align forward.align_ende \
     --trg ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/train.shuf.trg \
     --src ${DATA_DIR}/systems/${LANGUAGE_DATA}/data/bpe/train.shuf.src \
-    --left_pad 4 \
+    --left_pad ${LEFT_PAD} \
     --directory corpus/WMTENDE/4pad/
