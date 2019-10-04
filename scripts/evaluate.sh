@@ -8,12 +8,12 @@ DATA="corpus/WMTENDE/4pad"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/test.0.src"
 SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
 #BEAM_SIZES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35)
-BEAM_SIZES=(22 23 24 25 26 27 28 29 30 31 32 33 34 35)
+BEAM_SIZES=(35)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
 EPSILON_LIMIT=3
 SRC_EPSILON_INJECTION=4
-START_PADS=(0 1 2 3 4 5)
+START_PADS=(0 1 2 3 4 5 6)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
@@ -39,7 +39,7 @@ do
                   --start_pads ${START_PAD} \
                   --language ${LANGUAGE} \
                   --save_dir ${SAVE_DIR} \
-                  --file_name ${file_name} &
+                  --file_name ${file_name}
             echo "Generated output for START_PADS=${START_PAD} and BEAM_SIZE=${BEAM_SIZE}"
         done
 done
