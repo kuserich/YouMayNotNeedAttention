@@ -311,12 +311,12 @@ save_path = os.path.join(args.save_dir,  save_file_name)
 with open(save_path, 'w') as thefile:
 
     for item in output_sentences:
-        item = item.replace("@@@ ", "")
-        item = item.replace("@@@", "")
-        item = item.replace("@@ ", "")
-
-        with MosesDetokenizer(args.language) as detokenize:
-            item = detokenize(item.split(" "))
+        # item = item.replace("@@@ ", "")
+        # item = item.replace("@@@", "")
+        # item = item.replace("@@ ", "")
+        #
+        # with MosesDetokenizer(args.language) as detokenize:
+        #     item = detokenize(item.split(" "))
 
 
         thefile.write("%s\n" % item)

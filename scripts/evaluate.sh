@@ -3,7 +3,7 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0
 
 MODEL="exps/model390000.pt"
 DATA="corpus/WMTENDE/4pad"
@@ -14,7 +14,7 @@ BEAM_SIZES=(7 8)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
 EPSILON_LIMITS=(22 23 24)
-SRC_EPSILON_INJECTION=40
+SRC_EPSILON_INJECTION=4
 START_PADS=(3 4)
 LANGUAGE="de"
 SAVE_DIR="output/"
