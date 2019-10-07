@@ -269,7 +269,7 @@ with open(args.src_path, 'r') as f:
                     best = beam_top.extract(sort=True)[0]
 
                 sentence = [dictionary.idx2word[w] for w in best.sentence]
-                sentence = clean_sentence(sentence, special_tokens)
+                #sentence = clean_sentence(sentence, special_tokens)
 
                 output_sentences.append(" ".join(sentence))
 
