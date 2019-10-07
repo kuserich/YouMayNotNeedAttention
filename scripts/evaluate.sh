@@ -43,7 +43,7 @@ do
                       --start_pads ${START_PAD} \
                       --language ${LANGUAGE} \
                       --save_dir ${SAVE_DIR} \
-                      --file_name ${file_name} &
+                      --file_name ${file_name}
                 echo "Generated output for START_PADS=${START_PAD} and BEAM_SIZE=${BEAM_SIZE} and EPSILON_LIMIT=${EPSILON_LIMIT}"
                 done
         done
