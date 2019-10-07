@@ -7,3 +7,7 @@ venvs
 tools
 .vscode/
 *.align_ende
+corpus
+exps
+forward.align
+sockeye_autopilot
