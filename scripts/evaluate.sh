@@ -3,7 +3,7 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=7
 
 MODEL="exps/model390000.pt"
 DATA="corpus/WMTENDE/4pad"
@@ -14,7 +14,8 @@ BEAM_SIZES=(5)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
 EPSILON_LIMITS=(3)
-SRC_EPSILON_INJECTIONS=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30)
+#SRC_EPSILON_INJECTIONS=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30)
+SRC_EPSILON_INJECTIONS=(1 2 3 4 5 6 7 8 9 10 11 12 13)
 START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
@@ -52,7 +53,7 @@ do
                           --start_pads ${START_PAD} \
                           --language ${LANGUAGE} \
                           --save_dir ${SAVE_DIR} \
-                          --file_name ${file_name}
+                          --file_name ${file_name} &
 
                     echo "Generated output for"
                     echo "  START_PADS=${START_PAD}"
