@@ -23,10 +23,6 @@ parser.add_argument(
     '--trg', type=str,
     help="Location of the training data")
 parser.add_argument(
-    "--output", type=str, default="output/stats.txt",
-    help="Number of padding symbols to add to the beginning of the trg"
-         " sentence.")
-parser.add_argument(
     "--test", type=str2bool, nargs='?',
     const=True, default=False,
     help="Activate test mode")
