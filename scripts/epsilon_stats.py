@@ -130,7 +130,7 @@ def run(src):
         "Number of End Padding Tokens: %d" % total_end_padding_tokens,
         "Average Number of Tokens per line: {d:.3f}".format(d=average_line_length),
         "Average Number of Epsilon Tokens per line: {d:.3f}".format(d=average_line_epsilon_tokens),
-        "Average Number of Epsilon Tokens per line: {d:.3f}".format(d=average_end_padding_tokens),
+        "Average Number of End Epsilon Tokens per line: {d:.5f}".format(d=average_end_padding_tokens),
     )
 
     print("")
