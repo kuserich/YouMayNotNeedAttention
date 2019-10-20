@@ -178,19 +178,10 @@ with open(args.src_path, 'r') as f:
                     src_eos_reached = True
                     src_eos_index = i
 
-                """ <EDIT> """
-                input_tokens = [input_token]
-                if (args.src_epsilon_injection > 0
-                        and i >= len(sent) + args.src_epsilon_injection - 1
-                        and (input_token == eos or input_token == epsilon_src)):
+                if args.src_epsilon_injection > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
                     input_tokens = [epsilon_src] + [eos]
-                """ </EDIT> """
-
-
-            # if args.src_epsilon_injection > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
-                #     input_tokens = [epsilon_src] + [eos]
-                # else:
-                #     input_tokens = [input_token]
+                else:
+                    input_tokens = [input_token]
 
                 for curr_input_token in input_tokens:
                     input.data = input.data.fill_(curr_input_token)
