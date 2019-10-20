@@ -57,6 +57,7 @@ def count_epsilon_tokens_in_file(file):
     START_PAD = '@str@@'
 
     line_tokens = []
+    line_epsilon_tokens = []
     consecutive_epsilon_tokens = []
     total_tokens = 0
     total_epsilon_tokens = 0
@@ -82,17 +83,27 @@ def count_epsilon_tokens_in_file(file):
             consecutive_epsilon_tokens.append(
                 reduce_consecutive_tokens(consecutive_tokens))
             line_tokens.append(len(tokens))
+            line_epsilon_tokens.append(len(token))
             total_tokens += len(tokens)
 
     return (
         total_tokens, total_epsilon_tokens,
-        total_padding_tokens, line_tokens, consecutive_epsilon_tokens
+        total_padding_tokens, line_tokens, consecutive_epsilon_tokens,
+        line_epsilon_tokens
     )
 
 
+def sum(a, b):
+    """Return the sum of two numbers"""
+    return a + b
+
+
 def run(src, trg):
-    total_tokens_src, total_epsilon_tokens_src, total_padding_tokens_src, line_tokens_src, consecutive_epsilon_tokens_src = count_epsilon_tokens_in_file(src)
-    total_tokens_trg, total_epsilon_tokens_trg, total_padding_tokens_trg, line_tokens_trg, consecutive_epsilon_tokens_trg = count_epsilon_tokens_in_file(trg)
+    total_tokens_src, total_epsilon_tokens_src, total_padding_tokens_src, line_tokens_src, consecutive_epsilon_tokens_src, line_epsilon_tokens_src = count_epsilon_tokens_in_file(src)
+    total_tokens_trg, total_epsilon_tokens_trg, total_padding_tokens_trg, line_tokens_trg, consecutive_epsilon_tokens_trg, line_epsilon_tokens_trg = count_epsilon_tokens_in_file(trg)
+
+    average_line_length = reduce(sum, line_tokens_src) / len(line_tokens_src)
+    average_line_epsilon_tokens = reduce(sum, line_epsilon_tokens_src) / len(line_epsilon_tokens_src)
 
     message = (
         "EPSILON STATISTICS (SRC)",
@@ -100,6 +111,8 @@ def run(src, trg):
         "Number of Tokens: %d" % total_tokens_src,
         "Number of Epsilon Tokens: %d" % total_epsilon_tokens_src,
         "Number of Padding Tokens: %d" % total_padding_tokens_src,
+        "Average Number of Tokens per line: %d" % average_line_length,
+        "Average Number of Epsilon Tokens per line: %d" % average_line_epsilon_tokens,
         "",
         "EPSILON STATISTICS (TRG)",
         "=========================",
