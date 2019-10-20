@@ -63,12 +63,14 @@ def count_epsilon_tokens_in_file(file):
     total_epsilon_tokens = 0
     total_padding_tokens = 0
     total_end_padding_tokens = 0
+    line_end_padding_tokens = []
 
     with open(file) as f:
         for line in f:
             tokens = line.split()
             previous = None
             consecutive_tokens = []
+
             for token in tokens:
                 if token == START_PAD:
                     total_padding_tokens += 1
@@ -80,6 +82,19 @@ def count_epsilon_tokens_in_file(file):
                         consecutive_tokens.append(0)
                 previous = token
 
+
+            # if there is at least one padding token, assuming last token = EOS
+            if tokens[-2] == TRG_EPSILON or tokens[-2] == SRC_EPSILON:
+                num_end_padding_tokens = 1
+                for i in range(len(tokens) - 1, 0, -1):
+                    if tokens[i] == TRG_EPSILON or tokens[i] == SRC_EPSILON:
+                        num_end_padding_tokens += 1
+                    else:
+                        break
+                total_end_padding_tokens += num_end_padding_tokens
+                line_end_padding_tokens.append(num_end_padding_tokens)
+
+
             consecutive_epsilon_tokens.append(
                 reduce_consecutive_tokens(consecutive_tokens))
             line_tokens.append(len(tokens))
@@ -89,7 +104,7 @@ def count_epsilon_tokens_in_file(file):
     return (
         total_tokens, total_epsilon_tokens,
         total_padding_tokens, line_tokens, consecutive_epsilon_tokens,
-        line_epsilon_tokens
+        line_epsilon_tokens, total_end_padding_tokens, line_end_padding_tokens
     )
 
 
@@ -99,9 +114,9 @@ def sum(a, b):
 
 
 def run(src):
-    total_tokens, total_epsilon_tokens, total_padding_tokens, line_tokens, consecutive_epsilon_tokens, line_epsilon_tokens = count_epsilon_tokens_in_file(src)
+    total_tokens, total_epsilon_tokens, total_padding_tokens, line_tokens, consecutive_epsilon_tokens, line_epsilon_tokens, total_end_padding_tokens, line_end_padding_tokens = count_epsilon_tokens_in_file(src)
 
-    average_conescutive_length = reduce(sum, consecutive_epsilon_tokens) / len(consecutive_epsilon_tokens)
+    average_end_padding_tokens = reduce(sum, line_end_padding_tokens) / len(line_end_padding_tokens)
     average_line_length = reduce(sum, line_tokens) / len(line_tokens)
     average_line_epsilon_tokens = reduce(sum, line_epsilon_tokens) / len(line_epsilon_tokens)
 
@@ -112,9 +127,10 @@ def run(src):
         "Number of Tokens: %d" % total_tokens,
         "Number of Epsilon Tokens: %d" % total_epsilon_tokens,
         "Number of Padding Tokens: %d" % total_padding_tokens,
+        "Number of End Padding Tokens: %d" % total_end_padding_tokens,
         "Average Number of Tokens per line: {d:.3f}".format(d=average_line_length),
         "Average Number of Epsilon Tokens per line: {d:.3f}".format(d=average_line_epsilon_tokens),
-        "Average Number of Consecutive Epsilon Tokens per line: {d:.3f}".format(d=average_conescutive_length),
+        "Average Number of Epsilon Tokens per line: {d:.3f}".format(d=average_end_padding_tokens),
     )
 
     print("")
