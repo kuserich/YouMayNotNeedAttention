@@ -108,6 +108,7 @@ def run(src): #, trg):
     message = (
         "EPSILON STATISTICS (SRC)",
         "=========================",
+        "Number of Lines: %d" % len(line_tokens_src),
         "Number of Tokens: %d" % total_tokens_src,
         "Number of Epsilon Tokens: %d" % total_epsilon_tokens_src,
         "Number of Padding Tokens: %d" % total_padding_tokens_src,
