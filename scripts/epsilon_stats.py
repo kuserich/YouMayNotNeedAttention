@@ -112,7 +112,7 @@ def run(src): #, trg):
         "Number of Tokens: %d" % total_tokens_src,
         "Number of Epsilon Tokens: %d" % total_epsilon_tokens_src,
         "Number of Padding Tokens: %d" % total_padding_tokens_src,
-        "Average Number of Tokens per line: %d" % average_line_length,
+        "Average Number of Tokens per line: {average_line_length:.3f}",
         "Average Number of Epsilon Tokens per line: %d" % average_line_epsilon_tokens,
         #"",
         #"EPSILON STATISTICS (TRG)",
