@@ -98,28 +98,23 @@ def sum(a, b):
     return a + b
 
 
-def run(src): #, trg):
-    total_tokens_src, total_epsilon_tokens_src, total_padding_tokens_src, line_tokens_src, consecutive_epsilon_tokens_src, line_epsilon_tokens_src = count_epsilon_tokens_in_file(src)
-    #total_tokens_trg, total_epsilon_tokens_trg, total_padding_tokens_trg, line_tokens_trg, consecutive_epsilon_tokens_trg, line_epsilon_tokens_trg = count_epsilon_tokens_in_file(trg)
+def run(src):
+    total_tokens, total_epsilon_tokens, total_padding_tokens, line_tokens, consecutive_epsilon_tokens, line_epsilon_tokens = count_epsilon_tokens_in_file(src)
 
-    average_line_length = reduce(sum, line_tokens_src) / len(line_tokens_src)
-    average_line_epsilon_tokens = reduce(sum, line_epsilon_tokens_src) / len(line_epsilon_tokens_src)
+    average_conescutive_length = reduce(sum, consecutive_epsilon_tokens) / len(consecutive_epsilon_tokens)
+    average_line_length = reduce(sum, line_tokens) / len(line_tokens)
+    average_line_epsilon_tokens = reduce(sum, line_epsilon_tokens) / len(line_epsilon_tokens)
 
     message = (
-        "EPSILON STATISTICS (SRC)",
+        "EPSILON STATISTICS",
         "=========================",
-        "Number of Lines: %d" % len(line_tokens_src),
-        "Number of Tokens: %d" % total_tokens_src,
-        "Number of Epsilon Tokens: %d" % total_epsilon_tokens_src,
-        "Number of Padding Tokens: %d" % total_padding_tokens_src,
+        "Number of Lines: %d" % len(line_tokens),
+        "Number of Tokens: %d" % total_tokens,
+        "Number of Epsilon Tokens: %d" % total_epsilon_tokens,
+        "Number of Padding Tokens: %d" % total_padding_tokens,
         "Average Number of Tokens per line: {d:.3f}".format(d=average_line_length),
-        "Average Number of Epsilon Tokens per line: %d" % average_line_epsilon_tokens,
-        #"",
-        #"EPSILON STATISTICS (TRG)",
-        #"=========================",
-        #"Number of Tokens: %d" % total_tokens_trg,
-        #"Number of Epsilon Tokens: %d" % total_epsilon_tokens_trg,
-        #"Number of Padding Tokens: %d" % total_padding_tokens_trg,
+        "Average Number of Epsilon Tokens per line: {d:.3f}".format(d=average_line_epsilon_tokens),
+        "Average Number of Consecutive Epsilon Tokens per line: {d:.3f}".format(d=average_conescutive_length),
     )
 
     print("")
@@ -187,4 +182,4 @@ if (args.test):
     print("Running tests")
     test()
 else:
-    run(args.src) #, args.trg)
+    run(args.src)
