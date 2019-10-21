@@ -85,8 +85,8 @@ def count_epsilon_tokens_in_file(file):
 
             # if there is at least one padding token, assuming last token = EOS
             if tokens[-2] == TRG_EPSILON or tokens[-2] == SRC_EPSILON:
-                num_end_padding_tokens = 1
-                for i in range(len(tokens) - 1, 0, -1):
+                num_end_padding_tokens = 0
+                for i in range(len(tokens) - 2, 0, -1):
                     if tokens[i] == TRG_EPSILON or tokens[i] == SRC_EPSILON:
                         num_end_padding_tokens += 1
                     else:
