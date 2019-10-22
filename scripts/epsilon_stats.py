@@ -1,4 +1,5 @@
 import argparse
+import json
 from functools import reduce
 
 
@@ -20,8 +21,9 @@ parser.add_argument(
     '--src', type=str,
     help="Location of the src data")
 parser.add_argument(
-    '--trg', type=str,
-    help="Location of the training data")
+    "--save", type=str2bool, nargs='?',
+    const=True, default=False,
+    help="Save results")
 parser.add_argument(
     "--test", type=str2bool, nargs='?',
     const=True, default=False,
@@ -113,7 +115,57 @@ def sum(a, b):
     return a + b
 
 
-def run(src):
+def count_tokens(line):
+    """
+
+    Every epsilon token in a <i>source</i> sentence is a padding token.
+
+    :param file:
+    :return:
+    """
+    EOS = '<eos>'
+    TRG_EPSILON = '@@@@'
+    SRC_EPSILON = '@@@'
+    START_PAD = '@str@@'
+
+    tokens = line.split()
+
+    num_total = len(tokens)
+    num_trg = 0
+    num_src = 0
+    num_pad = 0
+
+    for token in tokens:
+        if token == TRG_EPSILON:
+            num_trg += 1
+        elif token == SRC_EPSILON:
+            num_src += 1
+        elif token == START_PAD:
+            num_pad += 1
+
+    # previous = None
+    # first = None
+    # for token in reversed(tokens):
+    #     if not first:
+    #         first = token
+    #         previous = token
+    #         continue
+
+    return (num_total, num_trg, num_src, num_pad)
+
+def run(src, save=False):
+    current_index = 0
+    with open(src, "r") as file:
+        lines = file.readlines()
+
+        with open(src + ".epstats", "w") as outfile:
+            outfile.write("total,trg,src,start_pad\n")
+            for line in lines:
+                num_total, num_trg, num_src, num_pad = count_tokens(line)
+                outfile.write(','.join(map(str, [current_index, num_total, num_trg, num_src, num_pad])) + "\n")
+                current_index += 1
+
+def run_old(src, save=False):
     total_tokens, total_epsilon_tokens, total_padding_tokens, line_tokens, consecutive_epsilon_tokens, line_epsilon_tokens, total_end_padding_tokens, line_end_padding_tokens = count_epsilon_tokens_in_file(src)
 
     average_end_padding_tokens = reduce(sum, line_end_padding_tokens) / len(line_end_padding_tokens)
@@ -137,6 +189,15 @@ def run(src):
     for entry in message:
         print(entry)
     print("")
+
+    if save:
+        data = {
+            "num_lines": len(line_tokens),
+            "num_tokems": total_tokens,
+            "num_epsilon_tokens": total_epsilon_tokens,
+        }
+        with open(src + ".epstats", "w") as outfile:
+            json.dump(data, outfile, indent=4, sort_keys=True)
 
 
 # TESTS
@@ -198,4 +259,4 @@ if (args.test):
     print("Running tests")
     test()
 else:
-    run(args.src)
+    run(args.src, save=args.save)

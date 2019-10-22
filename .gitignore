@@ -11,3 +11,5 @@ corpus
 exps
 forward.align
 sockeye_autopilot
+*.txt
+*.epstats
