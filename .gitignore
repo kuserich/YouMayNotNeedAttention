@@ -9,7 +9,7 @@ tools
 *.align_ende
 corpus
 exps
-forward.align
 sockeye_autopilot
 *.txt
 *.epstats
+data

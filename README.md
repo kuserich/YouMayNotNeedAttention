@@ -9,6 +9,9 @@ bash scripts/download_install_packages.sh
 cp combined_srctrg combined_srctrg_clean
 sed -i '/^ |||/d' combined_srctrg_clean
 sed -i '/ ||| $/d' combined_srctrg_clean
+
+cat combined_srctrg | grep -nr '^ ||| ' | wc -l
+cat combined_srctrg | grep -nr ' ||| $' | wc -l
 ```
 
 Code for the **Eager Translation Model** from the paper [You May Not Need Attention](https://arxiv.org/abs/1810.13409) by Ofir Press and Noah A. Smith
