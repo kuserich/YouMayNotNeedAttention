@@ -5,7 +5,8 @@ source ${SCRIPTS_DIR}/config.sh
 
 export CUDA_VISIBLE_DEVICES=0
 
-MODEL="exps-10-22/20191025-161111/model390000.pt"
+#MODEL="exps-10-22/20191025-161111/model390000.pt"
+MODEL="exps/model390000.pt"
 DATA="corpus/WMTENDE/4pad"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/test.0.src"
 SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
@@ -34,7 +35,7 @@ do
             do
                 for EPSILON_LIMIT in "${EPSILON_LIMITS[@]}"
                 do
-                    file_name="${PREFIX}{name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}${SUFFIX}.txt"
+                    file_name="${PREFIX}${name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}${SUFFIX}.txt"
                     mkdir -p ${SAVE_DIR}
 
                     echo "Running evaluate for"
