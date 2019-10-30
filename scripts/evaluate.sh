@@ -13,13 +13,15 @@ SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
 BEAM_SIZES=(5)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
-EPSILON_LIMITS=(10)
-SRC_EPSILON_INJECTIONS=(1 4 7 14 22 28 29 35 50 100)
-#SRC_EPSILON_INJECTIONS=(14 22)
+EPSILON_LIMITS=(4)
+#SRC_EPSILON_INJECTIONS=(1 4 7 14 22 28 29 35 50 100)
+SRC_EPSILON_INJECTIONS=(4)
 START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
+PREFIX=""
+SUFFIX=""
 
 name=$(date +"%m-%d-%y")
 
@@ -32,7 +34,7 @@ do
             do
                 for EPSILON_LIMIT in "${EPSILON_LIMITS[@]}"
                 do
-                    file_name="${name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}.txt"
+                    file_name="${PREFIX}{name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}${SUFFIX}.txt"
                     mkdir -p ${SAVE_DIR}
 
                     echo "Running evaluate for"

@@ -269,7 +269,8 @@ with open(args.src_path, 'r') as f:
                     best = beam_top.extract(sort=True)[0]
 
                 sentence = [dictionary.idx2word[w] for w in best.sentence]
-                #sentence = clean_sentence(sentence, special_tokens)
+                # TODO: remove for undepreprocessed
+                sentence = clean_sentence(sentence, special_tokens)
 
                 output_sentences.append(" ".join(sentence))
 
@@ -311,12 +312,14 @@ save_path = os.path.join(args.save_dir,  save_file_name)
 with open(save_path, 'w') as thefile:
 
     for item in output_sentences:
-        # item = item.replace("@@@ ", "")
-        # item = item.replace("@@@", "")
-        # item = item.replace("@@ ", "")
-        #
-        # with MosesDetokenizer(args.language) as detokenize:
-        #     item = detokenize(item.split(" "))
+        # TODO: remove for undepreprocessed
+
+        item = item.replace("@@@ ", "")
+        item = item.replace("@@@", "")
+        item = item.replace("@@ ", "")
+
+        with MosesDetokenizer(args.language) as detokenize:
+            item = detokenize(item.split(" "))
 
 
         thefile.write("%s\n" % item)
