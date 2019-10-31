@@ -5,9 +5,9 @@ source ${SCRIPTS_DIR}/config.sh
 
 export CUDA_VISIBLE_DEVICES=0
 
-#MODEL="exps-10-22/20191025-161111/model474500.pt"
+MODEL="exps-10-22/20191025-161111/model526500.pt"
 #MODEL="exps/model390000.pt"
-MODEL="exps20190909-161036/model383500.pt"
+#MODEL="exps20190909-161036/model383500.pt"
 DATA="corpus/WMTENDE/4pad"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/test.0.src"
 SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
