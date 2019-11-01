@@ -26,8 +26,8 @@ START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
-PREFIX=""
-SUFFIX="_M33"
+PREFIX="exps-10-22-39"
+SUFFIX=""
 
 name=$(date +"%m-%d-%y")
 
