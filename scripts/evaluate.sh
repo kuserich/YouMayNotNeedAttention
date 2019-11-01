@@ -3,7 +3,7 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=1
 
 MODEL="exps-10-22/20191025-161111/model390000.pt"
 DATA="data/10-25-align-eps/corpus"
@@ -24,14 +24,14 @@ SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
 BEAM_SIZES=(5)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
-EPSILON_LIMITS=(3 10 20 100)
+EPSILON_LIMITS=(3 10 50)
 SRC_EPSILON_INJECTIONS=(35 50 100 200)
 #SRC_EPSILON_INJECTIONS=(4)
 START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
-PREFIX="exps-10-22-52-"
+PREFIX=""
 SUFFIX=""
 
 name=$(date +"%m-%d-%y")
