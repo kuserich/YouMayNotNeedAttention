@@ -9,7 +9,8 @@ export CUDA_VISIBLE_DEVICES=0
 #MODEL="exps/model390000.pt"
 #MODEL="exps20190909-161036/model383500.pt"
 #MODEL="exps20190909-161036/model13000.pt"
-MODEL="data/wmt14_en_de/bpe/exps/20191031-170132/model13000.pt"
+MODEL="exps-10-30/20191030-214313/model13000.pt"
+#MODEL="data/wmt14_en_de/bpe/exps/20191031-170132/model13000.pt"
 DATA="corpus/WMTENDE/4pad"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/test.0.src"
 SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
@@ -25,7 +26,7 @@ LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
 PREFIX=""
-SUFFIX="_M23"
+SUFFIX="_M33"
 
 name=$(date +"%m-%d-%y")
 
