@@ -8,8 +8,11 @@ export CUDA_VISIBLE_DEVICES=0
 #MODEL="exps-10-22/20191025-161111/model390000.pt"
 #DATA="data/10-25-align-eps/corpus"
 
-MODEL="exps/model390000.pt"
-DATA="corpus/WMTENDE/4pad"
+MODEL="exps-10-22/20191025-161111/model526500.pt"
+DATA="data/10-25-align-eps/corpus"
+
+#MODEL="exps/model390000.pt"
+#DATA="corpus/WMTENDE/4pad"
 
 #MODEL="exps20190909-161036/model383500.pt"
 #MODEL="exps20190909-161036/model13000.pt"
