@@ -186,7 +186,7 @@ with open(args.src_path, 'r') as f:
                     src_eos_index = i
 
                 if DYN_SPI > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
-                    print("DYN_SPI ", DYN_SPI, "i", i, "line_number", line)
+                    print("DYN_SPI:", DYN_SPI, "; i:", i, "; line_number:", line_number, "; line:", line)
                     input_tokens = [epsilon_src] + [eos]
                 else:
                     input_tokens = [input_token]
