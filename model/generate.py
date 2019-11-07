@@ -103,13 +103,13 @@ def clean_sentence(sent, special_tokens): #make sure the input sentence does not
 beam_size = args.beam_size
 
 with open(args.checkpoint, 'rb') as f:
-    model = torch.load(f)
+    model = torch.load(f, map_location=torch.device('cpu'))
 model.eval()
 
-if args.cuda:
-    model.cuda()
-else:
-    model.cpu()
+# if args.cuda:
+#     model.cuda()
+# else:
+model.cpu()
 
 log_soft_max = torch.nn.LogSoftmax(dim=-1)
 
@@ -148,7 +148,12 @@ with open(args.src_path, 'r') as f:
 
             EOSed_sequences = []
             for i in range(1000): # so 1000 is the definite maximal output length, but in practice we don't get even close to that
-                if src_eos_reached and i - src_eos_index > SPI:
+                if current_best and seq_number and word:
+                    ADDED_EPS = current_best[seq_number].number_epsilons + 1 if word == epsilon else current_best[seq_number].number_epsilons
+                else:
+                    ADDED_EPS = 0
+                DYN_SPI = SPI + ADDED_EPS
+                if src_eos_reached and i - src_eos_index > DYN_SPI:
                     break # trg sentence length will not be more than (index at which src emitted <eos>) + MAX_TRG_FURTHUR
 
                 current_best = beam_top.extract()
@@ -159,12 +164,14 @@ with open(args.src_path, 'r') as f:
 
                 input = -1*torch.ones((1, current_beam_size)).long() # -1 is placeholder
                 if args.cuda:
-                    input.data = input.data.cuda()
+                    # input.data = input.data.cuda()
+                    input.data = input.data.cpu()
 
                 prev_tokens = [seq.last_token for seq in current_best]
                 prev_target = torch.Tensor([prev_tokens]).long()
                 if args.cuda:
-                    prev_target.data = prev_target.data.cuda()
+                    # prev_target.data = prev_target.data.cuda()
+                    prev_target.data = prev_target.data.cpu()
 
                 states = [seq.state for seq in current_best]
                 nlayers = len(states[0])
@@ -181,7 +188,7 @@ with open(args.src_path, 'r') as f:
                     src_eos_reached = True
                     src_eos_index = i
 
-                if SPI > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
+                if DYN_SPI > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
                     input_tokens = [epsilon_src] + [eos]
                 else:
                     input_tokens = [input_token]
