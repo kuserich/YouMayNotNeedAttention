@@ -103,13 +103,13 @@ def clean_sentence(sent, special_tokens): #make sure the input sentence does not
 beam_size = args.beam_size
 
 with open(args.checkpoint, 'rb') as f:
-    model = torch.load(f, map_location=torch.device('cpu'))
+    model = torch.load(f)
 model.eval()
 
-# if args.cuda:
-#     model.cuda()
-# else:
-model.cpu()
+if args.cuda:
+    model.cuda()
+else:
+    model.cpu()
 
 log_soft_max = torch.nn.LogSoftmax(dim=-1)
 
@@ -164,14 +164,14 @@ with open(args.src_path, 'r') as f:
 
                 input = -1*torch.ones((1, current_beam_size)).long() # -1 is placeholder
                 if args.cuda:
-                    # input.data = input.data.cuda()
-                    input.data = input.data.cpu()
+                    input.data = input.data.cuda()
+                    # input.data = input.data.cpu()
 
                 prev_tokens = [seq.last_token for seq in current_best]
                 prev_target = torch.Tensor([prev_tokens]).long()
                 if args.cuda:
-                    # prev_target.data = prev_target.data.cuda()
-                    prev_target.data = prev_target.data.cpu()
+                    prev_target.data = prev_target.data.cuda()
+                    # prev_target.data = prev_target.data.cpu()
 
                 states = [seq.state for seq in current_best]
                 nlayers = len(states[0])
