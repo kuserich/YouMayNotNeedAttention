@@ -145,13 +145,10 @@ with open(args.src_path, 'r') as f:
 
             #SPI = args.src_epsilon_injection
             SPI = args.start_pads + 2 # one for EOS and one for BOS
+            ADDED_EPS = 0
 
             EOSed_sequences = []
             for i in range(1000): # so 1000 is the definite maximal output length, but in practice we don't get even close to that
-                if current_best and seq_number and word:
-                    ADDED_EPS = current_best[seq_number].number_epsilons + 1 if word == epsilon else current_best[seq_number].number_epsilons
-                else:
-                    ADDED_EPS = 0
                 DYN_SPI = SPI + ADDED_EPS
                 if src_eos_reached and i - src_eos_index > DYN_SPI:
                     break # trg sentence length will not be more than (index at which src emitted <eos>) + MAX_TRG_FURTHUR
@@ -258,6 +255,7 @@ with open(args.src_path, 'r') as f:
                         c_t_hidden = [( hidden[layer][0][:,seq_number,:].unsqueeze(0) , hidden[layer][1][:,seq_number,:].unsqueeze(0) ) for layer in range(nlayers)]
                         score = logprob / (i+1)
                         number_epsilons = current_best[seq_number].number_epsilons + 1 if word == epsilon else current_best[seq_number].number_epsilons
+                        ADDED_EPS = number_epsilons
 
                         if word != eos or i == 0:
                             beam_top.append(Sequence(new_sentence, c_t_hidden, logprob, word, score=score, number_epsilons=number_epsilons))
