@@ -24,14 +24,14 @@ SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
 BEAM_SIZES=(5)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
-EPSILON_LIMITS=(12)
-SRC_EPSILON_INJECTIONS=(20 21 22 23 24 25 26 27 28 29 30)
+EPSILON_LIMITS=(3)
+SRC_EPSILON_INJECTIONS=(4)
 #SRC_EPSILON_INJECTIONS=(4)
 START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
-PREFIX=""
+PREFIX="DYNSPI_"
 SUFFIX=""
 
 name=$(date +"%m-%d-%y")
