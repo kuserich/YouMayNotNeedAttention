@@ -143,9 +143,12 @@ with open(args.src_path, 'r') as f:
             model_time = 0
             update_time = 0
 
+            #SPI = args.src_epsilon_injection
+            SPI = args.start_pads + 2 # one for EOS and one for BOS
+
             EOSed_sequences = []
             for i in range(1000): # so 1000 is the definite maximal output length, but in practice we don't get even close to that
-                if src_eos_reached and i - src_eos_index > args.src_epsilon_injection:
+                if src_eos_reached and i - src_eos_index > SPI:
                     break # trg sentence length will not be more than (index at which src emitted <eos>) + MAX_TRG_FURTHUR
 
                 current_best = beam_top.extract()
@@ -178,7 +181,7 @@ with open(args.src_path, 'r') as f:
                     src_eos_reached = True
                     src_eos_index = i
 
-                if args.src_epsilon_injection > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
+                if SPI > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
                     input_tokens = [epsilon_src] + [eos]
                 else:
                     input_tokens = [input_token]
