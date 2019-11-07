@@ -31,7 +31,7 @@ START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
-PREFIX="DYNSPI_"
+PREFIX="DYNSPI_P_"
 SUFFIX=""
 
 name=$(date +"%m-%d-%y")
