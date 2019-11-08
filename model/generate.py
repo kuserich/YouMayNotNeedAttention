@@ -151,8 +151,12 @@ with open(args.src_path, 'r') as f:
 
             EOSed_sequences = []
             for i in range(1000): # so 1000 is the definite maximal output length, but in practice we don't get even close to that
-                if word and word == epsilon:
-                    DYN_SPI += 1
+
+                try:
+                    if word and word == epsilon:
+                        DYN_SPI += 1
+                except NameError:
+                    print("NameError", i, line_number)
 
                 if src_eos_reached and i - src_eos_index > DYN_SPI:
                     break # trg sentence length will not be more than (index at which src emitted <eos>) + MAX_TRG_FURTHUR
