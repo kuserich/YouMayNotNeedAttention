@@ -145,11 +145,15 @@ with open(args.src_path, 'r') as f:
 
             #SPI = args.src_epsilon_injection
             SPI = args.start_pads + 2 # one for EOS and one for BOS
+            DYN_SPI = SPI
+
             ADDED_EPS = 0
 
             EOSed_sequences = []
             for i in range(1000): # so 1000 is the definite maximal output length, but in practice we don't get even close to that
-                DYN_SPI = SPI + ADDED_EPS
+                if word and word == epsilon:
+                    DYN_SPI += 1
+
                 if src_eos_reached and i - src_eos_index > DYN_SPI:
                     break # trg sentence length will not be more than (index at which src emitted <eos>) + MAX_TRG_FURTHUR
 
