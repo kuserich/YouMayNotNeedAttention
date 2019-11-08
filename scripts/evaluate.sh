@@ -3,7 +3,7 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=4
 
 MODEL="exps-10-22/20191025-161111/model390000.pt"
 DATA="data/10-25-align-eps/corpus"
