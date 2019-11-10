@@ -18,12 +18,10 @@ with open(csv_file, "a") as csv:
                 # and we want beam, pads, epsilon and spi from it
                 filename_split = file.split("_")
 
-                beam = filename_split[2]
-                start_pads = filename_split[4]
-                epsilon_limit = filename_split[7]
-                spi = filename_split[9].split(".")[0]
-
-                print(beam, start_pads, epsilon_limit, spi, data["score"])
+                beam = int(filename_split[2])
+                start_pads = int(filename_split[4])
+                epsilon_limit = int(filename_split[7])
+                spi = int(filename_split[9].split(".")[0])
 
                 csv.write(
                     "%d,%d,%d,%d,%d,%d" % (beam, start_pads, epsilon_limit, spi, data["score"], data["sys_len"])
