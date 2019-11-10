@@ -4,6 +4,7 @@
 
 .idea/
 venvs
+venv
 tools
 .vscode/
 *.align_ende
