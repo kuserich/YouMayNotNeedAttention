@@ -144,7 +144,7 @@ with open(args.src_path, 'r') as f:
             update_time = 0
 
             #SPI = args.src_epsilon_injection
-            SPI = args.start_pads + 2 # one for EOS and one for BOS
+            SPI = args.start_pads + 2 + args.epsilon_limit # one for EOS and one for BOS
             DYN_SPI = SPI
 
             ADDED_EPS = 0
@@ -158,7 +158,7 @@ with open(args.src_path, 'r') as f:
                 except NameError:
                     print("NameError", i, line_number)
 
-                if src_eos_reached and i - src_eos_index > DYN_SPI:
+                if src_eos_reached and i - src_eos_index > SPI:
                     break # trg sentence length will not be more than (index at which src emitted <eos>) + MAX_TRG_FURTHUR
 
                 current_best = beam_top.extract()
@@ -193,8 +193,8 @@ with open(args.src_path, 'r') as f:
                     src_eos_reached = True
                     src_eos_index = i
 
-                if DYN_SPI > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
-                    print("DYN_SPI:", DYN_SPI, "; i:", i, "; line_number:", line_number, "; line:", line)
+                if SPI > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
+                    print("SPI:", SPI, "; i:", i, "; line_number:", line_number, "; line:", line)
                     input_tokens = [epsilon_src] + [eos]
                 else:
                     input_tokens = [input_token]
