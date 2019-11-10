@@ -3,7 +3,7 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-export CUDA_VISIBLE_DEVICES=4
+export CUDA_VISIBLE_DEVICES=0
 
 MODEL="exps-10-22/20191025-161111/model390000.pt"
 DATA="data/10-25-align-eps/corpus"
@@ -31,7 +31,7 @@ START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
-PREFIX="DYNSPI_P_"
+PREFIX="SPI_SUM_"
 SUFFIX=""
 
 name=$(date +"%m-%d-%y")
