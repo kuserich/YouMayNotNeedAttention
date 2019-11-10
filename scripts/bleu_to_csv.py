@@ -24,5 +24,5 @@ with open(csv_file, "a") as csv:
                 spi = int(filename_split[9].split(".")[0])
 
                 csv.write(
-                    "%d,%d,%d,%d,%d,%d" % (beam, start_pads, epsilon_limit, spi, data["score"], data["sys_len"])
+                    "%d,%d,%d,%d,%d,%d\n" % (beam, start_pads, epsilon_limit, spi, data["score"], data["sys_len"])
                 )
