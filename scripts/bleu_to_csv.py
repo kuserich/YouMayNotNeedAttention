@@ -15,8 +15,8 @@ for file in os.listdir(directory):
             filename_split = file.split("_")
 
             beam = filename_split[2]
-            start_pads = filename_split[4]
-            epsilon_limit = filename_split[6]
-            spi = filename_split[8]
+            start_pads = filename_split[5]
+            epsilon_limit = filename_split[7]
+            spi = filename_split[9]
 
             print(beam, start_pads, epsilon_limit, spi, data["score"])
