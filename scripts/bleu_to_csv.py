@@ -3,7 +3,9 @@ import sys
 import json
 
 directory = sys.argv[1]
-csv_file = sys.argv[1]
+csv_file = sys.argv[2]
+
+print(directory, csv_file)
 
 with open(csv_file, "a") as csv:
     for file in os.listdir(directory):
