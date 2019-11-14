@@ -3,7 +3,7 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-export CUDA_VISIBLE_DEVICES=5
+export CUDA_VISIBLE_DEVICES=0
 
 MODEL="exps-10-22/20191025-161111/model390000.pt"
 DATA="data/10-25-align-eps/corpus"
@@ -25,8 +25,8 @@ SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe-split/x990516"
 BEAM_SIZES=(5)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
-EPSILON_LIMITS=(8)
-SRC_EPSILON_INJECTIONS=(45 46 47 48 49 50 60 70 80 90 100 200)
+EPSILON_LIMITS=(3)
+SRC_EPSILON_INJECTIONS=(9)
 #SRC_EPSILON_INJECTIONS=(4)
 START_PADS=(4)
 LANGUAGE="de"
