@@ -35,8 +35,18 @@ FILE_NAME="translation_test.txt"
 PREFIX="x990515"
 SUFFIX=""
 
+if [[ -d $SRC_PATH ]]; then
+    echo "$SRC_PATH is a directory"
+elif [[ -f $SRC_PATH ]]; then
+    echo "$SRC_PATH is a file"
+else
+    echo "$SRC_PATH is not valid"
+    exit 1
+fi
+
 name=$(date +"%m-%d-%y")
 
+exit 1
 
 for SRC_EPSILON_INJECTION in "${SRC_EPSILON_INJECTIONS[@]}"
 do
