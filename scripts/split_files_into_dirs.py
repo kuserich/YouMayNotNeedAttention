@@ -27,5 +27,5 @@ for file in sorted(os.listdir(src_dir)):
 
     file_cnt += 1
 
-    os.move(os.path.join(os.path.join(src_dir, str(dir_cnt)), file))
+    os.replace(os.path.join(os.path.join(src_dir, str(dir_cnt)), file))
     print("%s --> %s" % (os.path.join(src_dir, str(file)), os.path.join(os.path.join(src_dir, str(dir_cnt)), str(file))))
