@@ -47,7 +47,7 @@ do
                 for EPSILON_LIMIT in "${EPSILON_LIMITS[@]}"
                 do
                     file_name="${PREFIX}${name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}${SUFFIX}.txt"
-#                    mkdir -p ${SAVE_DIR}
+                    mkdir -p ${SAVE_DIR}
 
                     echo "Running evaluate for"
                     echo "  BEAM_SIZE=${BEAM_SIZE}"
@@ -55,19 +55,19 @@ do
                     echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
                     echo "  SRC_EPSILON_INJECTIONS=${SRC_EPSILON_INJECTION}"
 
-#                    python model/generate.py \
-#                          --checkpoint ${MODEL} \
-#                          --data ${DATA} \
-#                          --src_path ${SRC_PATH} \
-#                          --beam_size ${BEAM_SIZE} \
-#                          --eval \
-#                          --target_translation ${TARGET_TRANSLATION} \
-#                          --epsilon_limit ${EPSILON_LIMIT} \
-#                          --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
-#                          --start_pads ${START_PAD} \
-#                          --language ${LANGUAGE} \
-#                          --save_dir ${SAVE_DIR} \
-#                          --file_name ${file_name} &
+                    python model/generate.py \
+                          --checkpoint ${MODEL} \
+                          --data ${DATA} \
+                          --src_path ${SRC_PATH} \
+                          --beam_size ${BEAM_SIZE} \
+                          --eval \
+                          --target_translation ${TARGET_TRANSLATION} \
+                          --epsilon_limit ${EPSILON_LIMIT} \
+                          --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
+                          --start_pads ${START_PAD} \
+                          --language ${LANGUAGE} \
+                          --save_dir ${SAVE_DIR} \
+                          --file_name ${file_name} &
 
                     echo "Generated output for"
                     echo "  START_PADS=${START_PAD}"
