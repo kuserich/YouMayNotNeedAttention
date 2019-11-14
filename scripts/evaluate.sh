@@ -38,7 +38,19 @@ SUFFIX=""
 if [[ -d $SRC_PATH ]]; then
     for entry in "$SRC_PATH"/*
     do
-        echo $entry
+        PREFIX=$(basename $entry)
+        file_name="${PREFIX}${name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}${SUFFIX}.txt"
+        echo $file_name
+#        python model/generate.py \
+#          --checkpoint ${MODEL} \
+#          --data ${DATA} \
+#          --src_path ${entry} \
+#          --beam_size 5 \
+#          --epsilon_limit 3 \
+#          --src_epsilon_injection 9 \
+#          --start_pads 4 \
+#          --save_dir ${SAVE_DIR} \
+#          --file_name ${file_name}
     done
 elif [[ -f $SRC_PATH ]]; then
     echo "$SRC_PATH is a file"
