@@ -39,7 +39,7 @@ if [[ -d $SRC_PATH ]]; then
     for entry in "$SRC_PATH"/*
     do
         PREFIX=$(basename $entry)
-        file_name="${PREFIX}${name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}${SUFFIX}.txt"
+        file_name="${PREFIX}${name}_beam_5_pads_4_epsilon_limit_3_spi_9${SUFFIX}.txt"
         echo $file_name
 #        python model/generate.py \
 #          --checkpoint ${MODEL} \
