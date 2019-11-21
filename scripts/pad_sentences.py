@@ -43,9 +43,9 @@ for a in range(len(src_lines)):
 
     # pad at the end,
     # so that both src and trg sequences are of the same size.
-    if lenS > lenT:
+    if lenS < lenT:
         src.extend([SRC_EPSILON] * (lenS - lenT))
-    elif lenT > lenS:
+    elif lenT < lenS:
         trg.extend([TRG_EPSILON] * (lenT - lenS))
 
     if a < num_valid:
