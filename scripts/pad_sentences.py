@@ -20,8 +20,6 @@ def readf(filename):
 def read_single_line(input_line):
     return input_line.strip().split()
 
-left_pad = args.left_pad
-
 TRG_EPSILON = '@@@@'
 SRC_EPSILON = '@@@'
 START_PAD = '@str@@'
