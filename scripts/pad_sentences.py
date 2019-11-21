@@ -25,7 +25,7 @@ SRC_EPSILON = '@@@'
 START_PAD = '@str@@'
 
 src_lines = readf(args.src)
-trg_lines = readf(args.src)
+trg_lines = readf(args.trg)
 
 directory = args.directory
 num_valid = args.num_valid
