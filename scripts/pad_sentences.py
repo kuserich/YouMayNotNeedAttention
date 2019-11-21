@@ -36,8 +36,8 @@ trg_out_val = open(directory + "valid_trg.txt", 'w')
 trg_out_train = open(directory + "train_trg.txt", 'w')
 
 for a in range(len(src_lines)):
-    src = src_lines[a].copy()
-    trg = trg_lines[a].copy()
+    src = src_lines[a].split()
+    trg = trg_lines[a].split()
 
     lenS, lenT = len(src), len(trg)
 
