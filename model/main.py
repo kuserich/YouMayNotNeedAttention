@@ -65,6 +65,8 @@ parser.add_argument('--wdecay', type=float, default=1.2e-6,
                     help='weight decay applied to all weights')
 parser.add_argument('--continue_train', action='store_true',
                     help='continue train from a checkpoint')
+parser.add_argument('--continue_path', type=str,
+                    help='path to the folder which will contain model to continue training')
 
 args = parser.parse_args()
 
@@ -113,7 +115,7 @@ test_data_src, test_data_trg = batchify(corpus.valid_src, corpus.valid_trg, test
 ntokens = len(corpus.dictionary)
 
 if args.continue_train:
-    model = torch.load(os.path.join(args.save, 'model.pt'))
+    model = torch.load(os.path.join(args.continue_path))
     print("Loaded existing model.")
 else:
     model = model.RNNModel('LSTM', ntokens, args.emsize, args.nhid, args.nlayers, args.dropout, args.dropouth,
