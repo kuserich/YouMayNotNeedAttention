@@ -23,6 +23,7 @@ def read_single_line(input_line):
 TRG_EPSILON = '@@@@'
 SRC_EPSILON = '@@@'
 START_PAD = '@str@@'
+EOS = '<eos>'
 
 src_lines = readf(args.src)
 trg_lines = readf(args.trg)
@@ -39,14 +40,24 @@ for a in range(len(src_lines)):
     src = src_lines[a].split()
     trg = trg_lines[a].split()
 
+    if src[0] == EOS:
+        del src[0]
+    if src[-1] == EOS:
+        del src[-1]
+
+    if trg[0] == EOS:
+        del trg[0]
+    if trg[-1] == EOS:
+        del trg[-1]
+
     lenS, lenT = len(src), len(trg)
 
     # pad at the end,
     # so that both src and trg sequences are of the same size.
     if lenS < lenT:
-        src.extend([SRC_EPSILON] * (lenS - lenT))
+        src.extend([SRC_EPSILON] * (lenT - lenS))
     elif lenT < lenS:
-        trg.extend([TRG_EPSILON] * (lenT - lenS))
+        trg.extend([TRG_EPSILON] * (lenS - lenT))
 
     if a < num_valid:
         src_out_val.write(" ".join(src) + '\n')
