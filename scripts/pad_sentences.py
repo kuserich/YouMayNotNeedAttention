@@ -40,6 +40,11 @@ for a in range(len(src_lines)):
     src = src_lines[a].split()
     trg = trg_lines[a].split()
 
+    lenS, lenT = len(src), len(trg)
+
+    if lenS == 0 or lenT == 0:
+        continue
+
     if src[0] == EOS:
         del src[0]
     if src[-1] == EOS:
