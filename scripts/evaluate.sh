@@ -34,9 +34,9 @@ SRC_EPSILON_INJECTIONS=(9)
 #SRC_EPSILON_INJECTIONS=(4)
 START_PADS=(4)
 LANGUAGE="de"
-SAVE_DIR="output/training/"
+SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
-PREFIX="x990230_"
+PREFIX=""
 SUFFIX=""
 
 if [[ -d $SRC_PATH ]]; then
