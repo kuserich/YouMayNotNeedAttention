@@ -6,15 +6,19 @@ source ${SCRIPTS_DIR}/config.sh
 export CUDA_VISIBLE_DEVICES=1
 
 
-#MODEL="exps-11-20-kd/20191122-163749/model208000.pt"
-#DATA="corpus/WMTENDE/11-20-kd"
+# Model and corpus of child model
+MODEL="exps-11-20-kd/20191122-163749/model208000.pt"
+DATA="corpus/WMTENDE/11-20-kd"
 
-MODEL="exps-10-22/20191025-161111/model390000.pt"
-DATA="data/10-25-align-eps/corpus"
+# Model and corpus of base line Press & Smith Model
+#MODEL="exps-10-22/20191025-161111/model390000.pt"
+#DATA="data/10-25-align-eps/corpus"
 
+# Model and corpus of base line Press & Smith model after 35 Epochs
 #MODEL="exps-10-22/20191025-161111/model526500.pt"
 #DATA="data/10-25-align-eps/corpus"
 
+# Model and corpus of base line P&S model trained with partially incorrect training data
 #MODEL="exps/model390000.pt"
 #DATA="corpus/WMTENDE/4pad"
 
