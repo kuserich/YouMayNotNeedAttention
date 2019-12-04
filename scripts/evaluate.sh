@@ -3,16 +3,17 @@ BASE_DIR=${SCRIPTS_DIR}/..
 
 source ${SCRIPTS_DIR}/config.sh
 
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=1
 
 
 # Model and corpus of child model
 #MODEL="exps-11-20-kd/20191122-163749/model208000.pt"
-#DATA="corpus/WMTENDE/11-20-kd"
+MODEL="exps-11-20-kd/20191122-163749/model312000.pt"
+DATA="corpus/WMTENDE/11-20-kd"
 
 # Model and corpus of base line Press & Smith Model
-MODEL="exps-10-22/20191025-161111/model390000.pt"
-DATA="data/10-25-align-eps/corpus"
+#MODEL="exps-10-22/20191025-161111/model390000.pt"
+#DATA="data/10-25-align-eps/corpus"
 
 # Model and corpus of base line Press & Smith model after 35 Epochs
 #MODEL="exps-10-22/20191025-161111/model526500.pt"
@@ -31,7 +32,7 @@ DATA="data/10-25-align-eps/corpus"
 SRC_PATH="/mnt/storage/scratch1/goeckeritz/dev.en"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe-split-all/x990230"
 #BEAM_SIZES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35)
-BEAM_SIZES=(5)
+BEAM_SIZES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
 EPSILON_LIMITS=(3)
@@ -41,7 +42,7 @@ START_PADS=(4)
 LANGUAGE="de"
 SAVE_DIR="output/"
 FILE_NAME="translation_test.txt"
-PREFIX="just_a_test"
+PREFIX="larger_kd"
 SUFFIX=""
 
 if [[ -d $SRC_PATH ]]; then
