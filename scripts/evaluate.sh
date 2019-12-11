@@ -8,12 +8,12 @@ export CUDA_VISIBLE_DEVICES=5
 
 # Model and corpus of child model
 #MODEL="exps-11-20-kd/20191122-163749/model208000.pt"
-MODEL="exps-11-20-kd/20191122-163749/model312000.pt"
-DATA="corpus/WMTENDE/11-20-kd"
+#MODEL="exps-11-20-kd/20191122-163749/model312000.pt"
+#DATA="corpus/WMTENDE/11-20-kd"
 
 # Model and corpus of base line Press & Smith Model
-#MODEL="exps-10-22/20191025-161111/model390000.pt"
-#DATA="data/10-25-align-eps/corpus"
+MODEL="exps-10-22/20191025-161111/model390000.pt"
+DATA="data/10-25-align-eps/corpus"
 
 # Model and corpus of base line Press & Smith model after 35 Epochs
 #MODEL="exps-10-22/20191025-161111/model526500.pt"
@@ -29,20 +29,21 @@ DATA="corpus/WMTENDE/11-20-kd"
 #MODEL="data/wmt14_en_de/bpe/exps/20191031-170132/model13000.pt"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/test.0.src"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe/dev.src"
-SRC_PATH="/mnt/storage/scratch1/goeckeritz/dev.bpe.en"
+#SRC_PATH="/mnt/storage/scratch1/goeckeritz/dev.bpe.en"
+SRC_PATH="/srv/scratch1/goeckeritz/dev.bpe.en"
 #SRC_PATH="sockeye_autopilot/systems/wmt14_en_de/data/bpe-split-all/x990230"
 #BEAM_SIZES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35)
-BEAM_SIZES=(25 26 27 28 29 30 31 32 33 34 35)
+BEAM_SIZES=(1 2 3 4 6 7 8)
 #TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/test.0.trg"
 TARGET_TRANSLATION="sockeye_autopilot/systems/wmt14_en_de/data/tst/dev.trg"
 EPSILON_LIMITS=(3)
 SRC_EPSILON_INJECTIONS=(4)
 #SRC_EPSILON_INJECTIONS=(4)
-START_PADS=(4)
+START_PADS=(4 9)
 LANGUAGE="de"
-SAVE_DIR="output/"
+SAVE_DIR="output/default/"
 FILE_NAME="translation_test.txt"
-PREFIX="larger_kd_"
+PREFIX="default_"
 SUFFIX=""
 
 if [[ -d $SRC_PATH ]]; then
