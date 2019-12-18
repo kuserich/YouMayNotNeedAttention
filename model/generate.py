@@ -219,6 +219,7 @@ with open(args.src_path, 'r') as f:
 
                     new_log_probs = np.reshape(new_log_probs, (-1))
 
+
                     current_top = np.argpartition(new_log_probs, -beam_size)[-beam_size:] #k-argmax where k is beam_size
 
                     start3_time = time.time()

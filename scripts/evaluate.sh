@@ -45,6 +45,7 @@ SAVE_DIR="output/default/"
 FILE_NAME="translation_test.txt"
 PREFIX="default_"
 SUFFIX=""
+MODEL_CLASS="default"
 
 if [[ -d $SRC_PATH ]]; then
     echo "Processing src dir";
@@ -75,7 +76,9 @@ elif [[ -f $SRC_PATH ]]; then
                 do
                     for EPSILON_LIMIT in "${EPSILON_LIMITS[@]}"
                     do
-                        file_name="${PREFIX}${name}_beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}${SUFFIX}.txt"
+                        file_name="${PREFIX}beam_${BEAM_SIZE}_pads_${START_PAD}_epsilon_limit_${EPSILON_LIMIT}_spi_${SRC_EPSILON_INJECTION}_class_${MODEL_CLASS}${SUFFIX}.txt"
+                        echo ${file_name}
+                        exit;
                         mkdir -p ${SAVE_DIR}
 
                         echo "Running evaluate for"
