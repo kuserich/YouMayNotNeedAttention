@@ -86,7 +86,8 @@ epsilon_src = dictionary.word2idx[dictionary.epsilon_src_token]
 
 if args.start_pads > 0:
     start_pad = dictionary.word2idx[dictionary.start_pad_token]
-special_tokens = [dictionary.epsilon_token] + [dictionary.epsilon_src_token] + [dictionary.eos_token] + ([dictionary.start_pad_token] if args.start_pads > 0 else [])
+# special_tokens = [dictionary.epsilon_token] + [dictionary.epsilon_src_token] + [dictionary.eos_token] + ([dictionary.start_pad_token] if args.start_pads > 0 else [])
+special_tokens = []
 
 MAX_TRG_FURTHER = 10
 start_seq = [bos]
