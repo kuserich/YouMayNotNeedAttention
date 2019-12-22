@@ -149,11 +149,11 @@ if [[ -d $SRC_PATH ]]; then
 elif [[ -f $SRC_PATH ]]; then
     echo "processing file";
     current_date=$(date +"%m-%d-%y")
-    for SRC_EPSILON_INJECTION in "${SRC_EPSILON_INJECTIONS[@]}"
+    for SRC_EPSILON_INJECTION in $(echo "${SRC_EPSILON_INJECTIONS}" | sed "s/,/ /g")
     do
-        for BEAM_SIZE in "${BEAM_SIZES[@]}"
+        for BEAM_SIZE in $(echo "${BEAM_SIZES}" | sed "s/,/ /g")
         do
-            for START_PAD in "${START_PADS[@]}"
+            for START_PAD in $(echo "${START_PADS}" | sed "s/,/ /g")
                 do
                     for EPSILON_LIMIT in "${EPSILON_LIMITS[@]}"
                     do
@@ -175,26 +175,26 @@ elif [[ -f $SRC_PATH ]]; then
                         echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
                         echo "  SRC_EPSILON_INJECTIONS=${SRC_EPSILON_INJECTION}"
 
-#                        python model/generate.py \
-#                              --checkpoint ${MODEL} \
-#                              --data ${DATA} \
-#                              --src_path ${SRC_PATH} \
-#                              --beam_size ${BEAM_SIZE} \
-#                              --eval \
-#                              --target_translation ${TARGET_TRANSLATION} \
-#                              --epsilon_limit ${EPSILON_LIMIT} \
-#                              --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
-#                              --start_pads ${START_PAD} \
-#                              --language ${LANGUAGE} \
-#                              --save_dir ${SAVE_DIR} \
-#                              --file_name ${file_name} &
-#
-#                        echo "Generated output for"
-#                        echo "  START_PADS=${START_PAD}"
-#                        echo "  BEAM_SIZE=${BEAM_SIZE}"
-#                        echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
-#
-#                        echo "Stored results in ${SAVE_DIR}${file_name}"
+                        python model/generate.py \
+                              --checkpoint ${MODEL} \
+                              --data ${DATA} \
+                              --src_path ${SRC_PATH} \
+                              --beam_size ${BEAM_SIZE} \
+                              --eval \
+                              --target_translation ${TARGET_TRANSLATION} \
+                              --epsilon_limit ${EPSILON_LIMIT} \
+                              --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
+                              --start_pads ${START_PAD} \
+                              --language ${LANGUAGE} \
+                              --save_dir ${SAVE_DIR} \
+                              --file_name ${file_name} &
+
+                        echo "Generated output for"
+                        echo "  START_PADS=${START_PAD}"
+                        echo "  BEAM_SIZE=${BEAM_SIZE}"
+                        echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
+
+                        echo "Stored results in ${SAVE_DIR}${file_name}"
                         done
                 done
         done
