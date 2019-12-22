@@ -117,6 +117,7 @@ echo "PREFIX                  = ${PREFIX}"
 echo "SUFFIX                  = ${SUFFIX}"
 echo "MODEL_CLASS             = ${MODEL_CLASS}"
 echo "FILE_NAME               = ${FILE_NAME}"
+
 if [[ -n $1 ]]; then
     echo "Last line of file specified as non-opt/last argument:"
     tail -1 "$1"
