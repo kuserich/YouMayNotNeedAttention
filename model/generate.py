@@ -128,7 +128,7 @@ with open(args.src_path, 'r') as f:
         with torch.no_grad():
 
             # epsilon_limit = args.epsilon_limit
-            epsilon_limit = trg_lines[line_number].count(dictionary.epsilon_token)
+            epsilon_limit = trg_lines[line_number].split().count(dictionary.epsilon_token)
             epsilon_limits.append(epsilon_limit)
 
             src_eos_reached = False
