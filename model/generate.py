@@ -317,7 +317,7 @@ save_file_name = ''.join(random.sample(s,10))
 if args.file_name:
     save_file_name = args.file_name
 
-save_path = os.path.join(args.save_dir,  save_file_name)
+save_path = os.path.join(args.save_dir, save_file_name)
 with open(save_path, 'w') as thefile:
 
     for item in output_sentences:
@@ -334,7 +334,7 @@ with open(save_path, 'w') as thefile:
         thefile.write("%s\n" % item)
 
 limits_save_path = os.path.join(args.save_dir, save_file_name + ".limits")
-with open(limits_save_path, 'w') as file:
+with open(save_path + ".limits", 'w') as file:
     for l in epsilon_limits:
         file.write("%s\n" % l)
 
