@@ -126,12 +126,15 @@ with open(args.src_path, 'r') as f:
     for line_number, line in enumerate(f):
         with torch.no_grad():
 
-            epsilon_limit = args.epsilon_limit
+            # epsilon_limit = args.epsilon_limit
+            epsilon_limit = trg_lines[line_number].count(dictionary.epsilon_token)
 
+            print("Line Number: %s" % line_number)
+            print("Epsilon Limit: %s" % epsilon_limit)
 
-            print(line)
-            print(line_number)
-            print(trg_lines[line_number])
+            if epsilon_limit > 0:
+                print(line)
+                print(trg_lines[line_number])
 
             continue
             exit()
