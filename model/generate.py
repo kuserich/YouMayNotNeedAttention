@@ -333,7 +333,8 @@ with open(save_path, 'w') as thefile:
 
         thefile.write("%s\n" % item)
 
-with open(save_path + ".limits", 'w') as file:
+limits_save_path = os.path.join(save_path, save_file_name + ".limits")
+with open(limits_save_path, 'w') as file:
     for l in epsilon_limits:
         file.write("%s\n" % l)
 
