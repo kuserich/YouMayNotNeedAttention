@@ -173,15 +173,21 @@ with open(args.src_path, 'r') as f:
                     print('Unkown token: {}'.format(sent[i]), file=stderr)
                     input_token = epsilon_src #shouldn't really ever get here if you use BPE
 
-
                 if input_token == eos:
                     src_eos_reached = True
                     src_eos_index = i
 
                 if args.src_epsilon_injection > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
-                    input_tokens = [epsilon_src] + [eos]
+                    input_tokens = [epsilon_src]
                 else:
                     input_tokens = [input_token]
+
+                if src_eos_reached and i == src_eos_index + args.src_epsilon_injection:
+                    print("INFO - probably reached last token, setting eos now (sent, src_eos_index, i, spi, control sent)")
+                    print(sent)
+                    print(src_eos_index, i, args.src_epsilon_injection)
+                    print(clean_sentence(line.split(), special_tokens) + args.src_epsilon_injection * [epsilon_src] + ['<eos>'])
+                    input_tokens = [eos]
 
                 for curr_input_token in input_tokens:
                     input.data = input.data.fill_(curr_input_token)
