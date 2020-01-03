@@ -133,6 +133,7 @@ with open(args.src_path, 'r') as f:
             print(line_number)
             print(trg_lines[line_number])
 
+            continue
             exit()
 
             src_eos_reached = False
