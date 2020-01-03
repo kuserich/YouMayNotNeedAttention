@@ -122,8 +122,6 @@ output_sentences = []
 trg_handler = open(args.target_translation, 'r')
 trg_lines = trg_handler.readlines()
 
-print(trg_lines[0:3])
-exit()
 with open(args.src_path, 'r') as f:
     for line_number, line in enumerate(f):
         with torch.no_grad():
@@ -131,7 +129,11 @@ with open(args.src_path, 'r') as f:
             epsilon_limit = args.epsilon_limit
 
 
-            #print (line_number)
+            print(line)
+            print(line_number)
+            print(trg_lines[line_number])
+
+            exit()
 
             src_eos_reached = False
             src_eos_index = -1 # -1 is just a placeholder
