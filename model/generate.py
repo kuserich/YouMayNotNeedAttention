@@ -129,16 +129,6 @@ with open(args.src_path, 'r') as f:
             # epsilon_limit = args.epsilon_limit
             epsilon_limit = trg_lines[line_number].count(dictionary.epsilon_token)
 
-            print("Line Number: %s" % line_number)
-            print("Epsilon Limit: %s" % epsilon_limit)
-
-            if epsilon_limit > 0:
-                print(line)
-                print(trg_lines[line_number])
-
-            continue
-            exit()
-
             src_eos_reached = False
             src_eos_index = -1 # -1 is just a placeholder
 
