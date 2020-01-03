@@ -122,12 +122,14 @@ output_sentences = []
 trg_handler = open(args.target_translation, 'r')
 trg_lines = trg_handler.readlines()
 
+epsilon_limits = []
 with open(args.src_path, 'r') as f:
     for line_number, line in enumerate(f):
         with torch.no_grad():
 
             # epsilon_limit = args.epsilon_limit
             epsilon_limit = trg_lines[line_number].count(dictionary.epsilon_token)
+            epsilon_limits.append(epsilon_limit)
 
             src_eos_reached = False
             src_eos_index = -1 # -1 is just a placeholder
@@ -331,6 +333,9 @@ with open(save_path, 'w') as thefile:
 
         thefile.write("%s\n" % item)
 
+with open(save_path + ".limits") as file:
+    for l in epsilon_limits:
+        file.write("%s\n" % l)
 
 if args.eval:
     inputfh = open(save_path, 'r')
