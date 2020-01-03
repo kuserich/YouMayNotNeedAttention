@@ -118,9 +118,18 @@ start_time = time.time()
 
 default_inital_state = model.init_hidden(1)
 output_sentences = []
+
+trg_handler = open(args.target_translation, 'r')
+trg_lines = trg_handler.readlines()
+
+print(trg_lines[0:3])
+exit()
 with open(args.src_path, 'r') as f:
     for line_number, line in enumerate(f):
         with torch.no_grad():
+
+            epsilon_limit = args.epsilon_limit
+
 
             #print (line_number)
 
@@ -205,7 +214,7 @@ with open(args.src_path, 'r') as f:
                         if args.start_pads > 0 and i >= args.start_pads:
                             log_soft_maxed[be][start_pad] = -100000
 
-                        if i> args.epsilon_limit and current_best[be].number_epsilons >= args.epsilon_limit:
+                        if i> epsilon_limit and current_best[be].number_epsilons >= epsilon_limit:
                             log_soft_maxed[be][epsilon] = -100000
 
                     log_probs = np.array([seq.logprob for seq in current_best])
