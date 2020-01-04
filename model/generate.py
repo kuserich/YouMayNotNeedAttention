@@ -131,6 +131,8 @@ with open(args.src_path, 'r') as f:
             epsilon_limit = trg_lines[line_number].split().count(dictionary.epsilon_token)
             epsilon_limits.append(epsilon_limit)
 
+            continue
+
             src_eos_reached = False
             src_eos_index = -1 # -1 is just a placeholder
 
@@ -303,6 +305,9 @@ with open(args.src_path, 'r') as f:
                     best = EOSed_sequences[0]
                 else:
                     best = beam_top.extract(sort=True)[0]
+
+    print(sum(epsilon_limits))
+    exit()
 
 
 
