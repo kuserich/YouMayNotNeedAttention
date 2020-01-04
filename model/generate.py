@@ -183,10 +183,6 @@ with open(args.src_path, 'r') as f:
                     input_tokens = [input_token]
 
                 if src_eos_reached and i == src_eos_index + args.src_epsilon_injection:
-                    print("INFO - probably reached last token, setting eos now (sent, src_eos_index, i, spi, control sent)")
-                    print(sent)
-                    print(src_eos_index, i, args.src_epsilon_injection)
-                    print(clean_sentence(line.split(), special_tokens) + args.src_epsilon_injection * [epsilon_src] + ['<eos>'])
                     input_tokens = [eos]
 
                 for curr_input_token in input_tokens:
