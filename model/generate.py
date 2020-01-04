@@ -262,6 +262,8 @@ with open(args.src_path, 'r') as f:
 
                 del input, prev_target, prev_state
 
+            print("Last Tokens: ", input_tokens)
+
 
             EOSed_sequences.sort(reverse=True)
 
