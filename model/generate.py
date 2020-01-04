@@ -131,8 +131,6 @@ with open(args.src_path, 'r') as f:
             epsilon_limit = trg_lines[line_number].split().count(dictionary.epsilon_token)
             epsilon_limits.append(epsilon_limit)
 
-            continue
-
             src_eos_reached = False
             src_eos_index = -1 # -1 is just a placeholder
 
@@ -307,6 +305,7 @@ with open(args.src_path, 'r') as f:
                     best = beam_top.extract(sort=True)[0]
 
 
+
 if args.debug:
     print(time.time() - start_time)
 
@@ -319,17 +318,6 @@ if args.file_name:
     save_file_name = args.file_name
 
 save_path = os.path.join(args.save_dir, save_file_name)
-
-
-sam = 0
-with open(save_path + ".limits", 'w') as file:
-    for l in epsilon_limits:
-        sam += l
-        file.write("%s\n" % l)
-
-print(sum(epsilon_limits), sam)
-exit()
-
 with open(save_path, 'w') as thefile:
 
     for item in output_sentences:
@@ -345,6 +333,10 @@ with open(save_path, 'w') as thefile:
 
         thefile.write("%s\n" % item)
 
+limits_save_path = os.path.join(args.save_dir, save_file_name + ".limits")
+with open(save_path + ".limits", 'w') as file:
+    for l in epsilon_limits:
+        file.write("%s\n" % l)
 
 if args.eval:
     inputfh = open(save_path, 'r')
