@@ -10,6 +10,7 @@ tools
 *.align_ende
 corpus
 exps
+exps*
 sockeye_autopilot
 *.txt
 *.epstats
