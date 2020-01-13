@@ -144,7 +144,8 @@ if [[ -d $SRC_PATH ]]; then
           --src_epsilon_injection 9 \
           --start_pads 4 \
           --save_dir ${SAVE_DIR} \
-          --file_name ${file_name}
+          --file_name ${file_name} \
+          --cuda
     done
 elif [[ -f $SRC_PATH ]]; then
     echo "processing file";
