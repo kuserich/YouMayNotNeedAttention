@@ -127,15 +127,8 @@ with open(args.src_path, 'r') as f:
             src_eos_index = -1 # -1 is just a placeholder
 
             sent = clean_sentence(line.split(), special_tokens) # + ['<eos>']
-
-            print(sent)
-
             sent = sent + (args.src_epsilon_injection * [dictionary.epsilon_src_token])
             sent = sent + ['<eos>']
-
-            print(sent)
-
-            exit()
 
             if args.debug:
                 print(">"+ " ".join(sent))
