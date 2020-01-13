@@ -33,7 +33,7 @@ parser.add_argument('--checkpoint', type=str, default='./model.pt',
                     help='model checkpoint to use')
 parser.add_argument('--seed', type=int, default=1111,
                     help='random seed')
-parser.add_argument('--cuda', action='store_false',
+parser.add_argument('--cuda', action='store_true',
                     help='use CUDA')
 parser.add_argument('--beam_size', type=int, default=10,
                     help='size of beam')
@@ -103,7 +103,7 @@ def clean_sentence(sent, special_tokens): #make sure the input sentence does not
 beam_size = args.beam_size
 
 with open(args.checkpoint, 'rb') as f:
-    model = torch.load(f)
+    model = torch.load(f, map_location="cpu")
 model.eval()
 
 if args.cuda:
@@ -216,6 +216,7 @@ with open(args.src_path, 'r') as f:
                         log_probs = log_probs[0]
 
                     new_log_probs = log_probs + log_soft_maxed
+                    # new_log_probs = log_soft_maxed
 
                     new_log_probs = np.reshape(new_log_probs, (-1))
 
@@ -224,9 +225,10 @@ with open(args.src_path, 'r') as f:
 
                     start3_time = time.time()
 
-                    for c_t in current_top: #go over the top predictions and add them to the beam
+                    for index, c_t in enumerate(current_top): #go over the top predictions and add them to the beam
                         seq_number = int(np.floor(c_t/ntokens))
                         word = int(c_t) - seq_number*ntokens
+                        word_human = dictionary.idx2word[word]
 
                         if i < args.start_pads:
                             word = start_pad
