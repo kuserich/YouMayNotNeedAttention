@@ -237,6 +237,9 @@ with open(args.src_path, 'r') as f:
 
                         if args.start_pads == 0 or word != start_pad:
                             previous_logprob  = current_best[seq_number].logprob
+                            print()
+                            print(word)
+                            print(dictionary.idx2word[word])
                             current_logprob =  log_soft_maxed[seq_number][word]
 
 
