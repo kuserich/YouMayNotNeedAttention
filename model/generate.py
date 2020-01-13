@@ -33,7 +33,7 @@ parser.add_argument('--checkpoint', type=str, default='./model.pt',
                     help='model checkpoint to use')
 parser.add_argument('--seed', type=int, default=1111,
                     help='random seed')
-parser.add_argument('--cuda', action='store_false',
+parser.add_argument('--cuda', action='store_true',
                     help='use CUDA')
 parser.add_argument('--beam_size', type=int, default=10,
                     help='size of beam')
@@ -83,6 +83,9 @@ eos = dictionary.word2idx[dictionary.eos_token]
 epsilon = dictionary.word2idx[dictionary.epsilon_token]
 epsilon_src = dictionary.word2idx[dictionary.epsilon_src_token]
 
+
+print(ntokens)
+exit()
 
 if args.start_pads > 0:
     start_pad = dictionary.word2idx[dictionary.start_pad_token]
