@@ -126,7 +126,16 @@ with open(args.src_path, 'r') as f:
             src_eos_reached = False
             src_eos_index = -1 # -1 is just a placeholder
 
-            sent = clean_sentence(line.split(), special_tokens) + ['<eos>']
+            sent = clean_sentence(line.split(), special_tokens) # + ['<eos>']
+
+            print(sent)
+
+            sent = sent + (args.src_epsilon_injection * [dictionary.epsilon_src_token])
+            sent = sent + ['<eos>']
+
+            print(sent)
+
+            exit()
 
             if args.debug:
                 print(">"+ " ".join(sent))
@@ -177,14 +186,15 @@ with open(args.src_path, 'r') as f:
                     src_eos_reached = True
                     src_eos_index = i
 
-                if args.src_epsilon_injection > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
-                    input_tokens = [epsilon_src]
-                else:
-                    input_tokens = [input_token]
+                # if args.src_epsilon_injection > 0 and (input_token == eos or input_token == epsilon_src): #this controls the epsilon injection
+                #     input_tokens = [epsilon_src]
+                # else:
+                #     input_tokens = [input_token]
+                #
+                # if src_eos_reached and i == src_eos_index + args.src_epsilon_injection:
+                #     input_tokens = [eos]
 
-                if src_eos_reached and i == src_eos_index + args.src_epsilon_injection:
-                    input_tokens = [eos]
-
+                input_tokens = [input_token]
                 for curr_input_token in input_tokens:
                     input.data = input.data.fill_(curr_input_token)
 
@@ -261,8 +271,6 @@ with open(args.src_path, 'r') as f:
                     del output, hidden, log_soft_maxed
 
                 del input, prev_target, prev_state
-
-            print("Last Tokens: ", input_tokens)
 
 
             EOSed_sequences.sort(reverse=True)
