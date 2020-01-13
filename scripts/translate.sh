@@ -17,7 +17,7 @@ case $key in
     shift # past value
     ;;
     --vocabulary)
-    CORPUS="$2"
+    DATA="$2"
     shift # past argument
     shift # past value
     ;;
