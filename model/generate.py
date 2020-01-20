@@ -136,6 +136,8 @@ with open(args.src_path, 'r') as f:
 
             sent = clean_sentence(line.split(), special_tokens) + ['<eos>']
 
+            spi = max(len(trg_lines[line_number].split()) - len(sent), 0)
+
             if args.debug:
                 print(">"+ " ".join(sent))
 
