@@ -135,17 +135,17 @@ if [[ -d $SRC_PATH ]]; then
         PREFIX=$(basename $entry)
         file_name="${PREFIX}${name}_beam_5_pads_4_epsilon_limit_3_spi_9${SUFFIX}.txt"
         echo $file_name
-#        python model/generate.py \
-#          --checkpoint ${MODEL} \
-#          --data ${DATA} \
-#          --src_path ${entry} \
-#          --beam_size 5 \
-#          --epsilon_limit 3 \
-#          --src_epsilon_injection 9 \
-#          --start_pads 4 \
-#          --save_dir ${SAVE_DIR} \
-#          --file_name ${file_name} \
-#          --cuda
+        python model/generate.py \
+          --checkpoint ${MODEL} \
+          --data ${DATA} \
+          --src_path ${entry} \
+          --beam_size 5 \
+          --epsilon_limit 3 \
+          --src_epsilon_injection 9 \
+          --start_pads 4 \
+          --save_dir ${SAVE_DIR} \
+          --file_name ${file_name} \
+          --cuda
     done
 elif [[ -f $SRC_PATH ]]; then
     echo "processing file";
@@ -170,31 +170,31 @@ elif [[ -f $SRC_PATH ]]; then
 
                         mkdir -p ${SAVE_DIR}
 
-#                        echo "Running evaluate for"
-#                        echo "  BEAM_SIZE=${BEAM_SIZE}"
-#                        echo "  START_PAD=${START_PAD}"
-#                        echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
-#                        echo "  SRC_EPSILON_INJECTIONS=${SRC_EPSILON_INJECTION}"
+                        echo "Running evaluate for"
+                        echo "  BEAM_SIZE=${BEAM_SIZE}"
+                        echo "  START_PAD=${START_PAD}"
+                        echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
+                        echo "  SRC_EPSILON_INJECTIONS=${SRC_EPSILON_INJECTION}"
 
-#                        python model/generate.py \
-#                              --checkpoint ${MODEL} \
-#                              --data ${DATA} \
-#                              --src_path ${SRC_PATH} \
-#                              --beam_size ${BEAM_SIZE} \
-#                              --eval \
-#                              --target_translation ${TARGET_TRANSLATION} \
-#                              --epsilon_limit ${EPSILON_LIMIT} \
-#                              --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
-#                              --start_pads ${START_PAD} \
-#                              --language ${LANGUAGE} \
-#                              --save_dir ${SAVE_DIR} \
-#                              --file_name ${file_name} &
+                        python model/generate.py \
+                              --checkpoint ${MODEL} \
+                              --data ${DATA} \
+                              --src_path ${SRC_PATH} \
+                              --beam_size ${BEAM_SIZE} \
+                              --eval \
+                              --target_translation ${TARGET_TRANSLATION} \
+                              --epsilon_limit ${EPSILON_LIMIT} \
+                              --src_epsilon_injection ${SRC_EPSILON_INJECTION} \
+                              --start_pads ${START_PAD} \
+                              --language ${LANGUAGE} \
+                              --save_dir ${SAVE_DIR} \
+                              --file_name ${file_name} &
 
-#                        echo "Generated output for"
-#                        echo "  BEAM_SIZE=${BEAM_SIZE}"
-#                        echo "  START_PADS=${START_PAD}"
-#                        echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
-#                        echo "  SRC_EPSILON_INJECTIONS=${SRC_EPSILON_INJECTION}"
+                        echo "Generated output for"
+                        echo "  BEAM_SIZE=${BEAM_SIZE}"
+                        echo "  START_PADS=${START_PAD}"
+                        echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
+                        echo "  SRC_EPSILON_INJECTIONS=${SRC_EPSILON_INJECTION}"
 
                         echo "Stored results in ${SAVE_DIR}${file_name}"
                         done
