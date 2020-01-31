@@ -280,7 +280,7 @@ with open(args.src_path, 'r') as f:
                 # TODO: remove for undepreprocessed
                 # sentence = clean_sentence(sentence, special_tokens)
 
-                output_sentences.append(" ".join(sentence))
+                output_sentences.append(" ".join([*sentence, '|||', str(best.score), '|||', str(best.logprob)]))
 
 
             if args.debug:
