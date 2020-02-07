@@ -150,13 +150,13 @@ if [[ -d $SRC_PATH ]]; then
 elif [[ -f $SRC_PATH ]]; then
     echo "processing file";
     current_date=$(date +"%m-%d-%y")
-    for SRC_EPSILON_INJECTION in "${SRC_EPSILON_INJECTIONS[@]}"
+    for SRC_EPSILON_INJECTION in $(echo "${SRC_EPSILON_INJECTIONS}" | sed "s/,/ /g")
     do
-        for BEAM_SIZE in "${BEAM_SIZES[@]}"
+        for BEAM_SIZE in $(echo "${BEAM_SIZES}" | sed "s/,/ /g")
         do
-            for START_PAD in "${START_PADS[@]}"
+            for START_PAD in $(echo "${START_PADS}" | sed "s/,/ /g")
                 do
-                    for EPSILON_LIMIT in "${EPSILON_LIMITS[@]}"
+                    for EPSILON_LIMIT in $(echo "${EPSILON_LIMITS}" | sed "s/,/ /g")
                     do
                         file_name="${PREFIX}"
                         file_name="${file_name}${MODEL_CLASS}"
@@ -191,9 +191,10 @@ elif [[ -f $SRC_PATH ]]; then
                               --file_name ${file_name} &
 
                         echo "Generated output for"
-                        echo "  START_PADS=${START_PAD}"
                         echo "  BEAM_SIZE=${BEAM_SIZE}"
+                        echo "  START_PADS=${START_PAD}"
                         echo "  EPSILON_LIMIT=${EPSILON_LIMIT}"
+                        echo "  SRC_EPSILON_INJECTIONS=${SRC_EPSILON_INJECTION}"
 
                         echo "Stored results in ${SAVE_DIR}${file_name}"
                         done
