@@ -2,7 +2,7 @@
 
 class Sequence(object):
     """Represents a complete or partial sequence."""
-    def __init__(self, sentence, state, logprob, last_token, score=0, number_epsilons=0):
+    def __init__(self, sentence, state, logprob, last_token, score=0, number_epsilons=0, input_tokens=[]):
         """Initializes the Sequence.
         Args:
           sentence: List of word ids in the sequence.
@@ -16,6 +16,8 @@ class Sequence(object):
         self.score = score
         self.last_token = last_token
         self.number_epsilons = number_epsilons
+
+        self.input_tokens = input_tokens
 
     def __cmp__(self, other):
         """Compares Sequences by logprob."""

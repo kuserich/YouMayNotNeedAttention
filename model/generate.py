@@ -234,6 +234,7 @@ with open(args.src_path, 'r') as f:
                             word = start_pad
 
                         new_sentence = current_best[seq_number].sentence + [word]
+                        new_input = current_best[seq_number].input_tokens + [curr_input_token]
 
                         if args.start_pads == 0 or word != start_pad:
                             previous_logprob  = current_best[seq_number].logprob
@@ -253,10 +254,10 @@ with open(args.src_path, 'r') as f:
                         number_epsilons = current_best[seq_number].number_epsilons + 1 if word == epsilon else current_best[seq_number].number_epsilons
 
                         if word != eos or i == 0:
-                            beam_top.append(Sequence(new_sentence, c_t_hidden, logprob, word, score=score, number_epsilons=number_epsilons))
+                            beam_top.append(Sequence(new_sentence, c_t_hidden, logprob, word, score=score, number_epsilons=number_epsilons, input_tokens=new_input))
 
                         if word == eos and i > 0:
-                            EOSed_sequences.append(Sequence(new_sentence, c_t_hidden, logprob, word, score=score, number_epsilons=number_epsilons))
+                            EOSed_sequences.append(Sequence(new_sentence, c_t_hidden, logprob, word, score=score, number_epsilons=number_epsilons, input_tokens=new_input))
 
                     del output, hidden, log_soft_maxed
 
@@ -272,10 +273,12 @@ with open(args.src_path, 'r') as f:
                     best = beam_top.extract(sort=True)[0]
 
                 sentence = [dictionary.idx2word[w] for w in best.sentence]
+                input_sentence = [dictionary.idx2word[w] for w in best.input_tokens]
+
                 # TODO: remove for undepreprocessed
                 # sentence = clean_sentence(sentence, special_tokens)
 
-                output_sentences.append(" ".join(sentence))
+                output_sentences.append(" ||| ".join([" ".join(sentence), " ".join(input_sentence)]))
 
 
             if args.debug:
