@@ -144,6 +144,8 @@ with open(args.src_path, 'r') as f:
             update_time = 0
 
             EOSed_sequences = []
+
+            new_input = []
             for i in range(1000): # so 1000 is the definite maximal output length, but in practice we don't get even close to that
                 if src_eos_reached and i - src_eos_index > args.src_epsilon_injection:
                     break # trg sentence length will not be more than (index at which src emitted <eos>) + MAX_TRG_FURTHUR
@@ -184,6 +186,7 @@ with open(args.src_path, 'r') as f:
                     input_tokens = [input_token]
 
                 for curr_input_token in input_tokens:
+                    new_input += [curr_input_token]
                     input.data = input.data.fill_(curr_input_token)
 
                     start2_time = time.time()
@@ -234,7 +237,6 @@ with open(args.src_path, 'r') as f:
                             word = start_pad
 
                         new_sentence = current_best[seq_number].sentence + [word]
-                        new_input = current_best[seq_number].input_tokens + [curr_input_token]
 
                         if args.start_pads == 0 or word != start_pad:
                             previous_logprob  = current_best[seq_number].logprob
