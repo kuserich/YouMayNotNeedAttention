@@ -103,7 +103,8 @@ def clean_sentence(sent, special_tokens): #make sure the input sentence does not
 beam_size = args.beam_size
 
 with open(args.checkpoint, 'rb') as f:
-    model = torch.load(f, map_location="cpu")
+    model = torch.load(f)
+    # model = torch.load(f, map_location="cpu")
 model.eval()
 
 if args.cuda:
