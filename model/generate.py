@@ -304,6 +304,8 @@ with open(args.src_path, 'r') as f:
 if args.debug:
     print(time.time() - start_time)
 
+print("Total elapsed time: %s" % (time.time() - start_time))
+
 
 
 s='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
